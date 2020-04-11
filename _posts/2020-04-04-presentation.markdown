@@ -2,7 +2,8 @@
 layout: post
 title:  "Me presento"
 date:   2020-04-04 17:01:24 +0200
-categories: presentacion ander
+tags: presentacion ander
+author: Ander Granado
 ---
 
 Llevo años planteándome crear un blog. No se si es porque llevo 3 semanas encerrado en mi casa (y las que me quedan) debido a la cuarentena y me aburro bastante o si es que ahora estoy realmente dispuesto a ponerme con ello, pero aun así me he lanzado a la aventura.
