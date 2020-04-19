@@ -6,7 +6,7 @@ tags: coronavirus programacion trabajo remoto
 author: Ander Granado
 ---
 
-![Trabajar desde casa](/assets/laptop-beer2.jpg)
+![Trabajar desde casa](/images/laptop-beer2.jpg)
 
 Últimamente he estado leyendo varios artículos con respecto al teletrabajo. Parece que, ahora que la situación lo demanda, el teletrabajo es una forma de trabajo fundamental y necesaria. 
 
