@@ -1,16 +1,16 @@
 ---
 layout: post
-title:  "Como descargarse todas las imágenes de un perfil de Instagram con Python y algo de Web Scrapping"
+title:  "Cómo descargarse todas las imágenes de un perfil de Instagram con Python y algo de Web Scrapping"
 date: 2020-04-25 18:33:00 +0200
 tags: bot python instagram web-scrapping
 author: Ander Granado
 ---
 
-Instagram es la red del postureo. Es probablemente la red social que más uso. Soy demasiado joven como para usar Facebook activamente y demasiado viejo siquiera para plantearme crearme TikTok (si veis que ocurre, os doy permiso para acabar con mi existencia). También uso twitter, pero mas como proveedor de "noticias", pero no publico nada en esa red social.
+Instagram es la red del postureo. Es probablemente la red social que más uso. Soy demasiado joven como para usar Facebook activamente y demasiado viejo siquiera para plantearme crearme TikTok (si veis que ocurre, os doy permiso para acabar con mi existencia). También uso twitter, pero más como proveedor de "noticias", pero no publico nada en esa red social.
 
 Por lo tanto, todas mis publicaciones suelen ir a Instagram. A lo largo de los años me he dado cuenta de que se ha convertido en una especie de diario de hitos personales. Por encima de las fotos de mis viajes se pueden ver y observar fotos de cuando me saqué la carrera, de cuando vivía en Madrid y estaba en un estudio programando un videojuego o de buenos momentos con amigos. Aunque la calidad de las imágenes puede no ser la mejor, me gusta meterme de vez en cuando ahí y ver todos esos viajes y momentos.
 
-Aun así, soy informático y se que la única manera de que tu información pueda estar segura es tener tú mismo una copia. Por ello llevaba tiempo planteándome realizar algún script que me permitiera bajarme todas las fotos de mi perfil. También podia usar esto para refrescar un poco Python y practicar algo de web scrapping.
+Aun así, soy informático y se que la única manera de que tu información pueda estar segura es tener tú mismo una copia. Por ello llevaba tiempo planteándome realizar algún script que me permitiera bajarme todas las fotos de mi perfil. También podia usar esto para refrescar un poco Python y practicar algo de Web Scrapping.
 
 # Web Scrapping con Selenium
 
