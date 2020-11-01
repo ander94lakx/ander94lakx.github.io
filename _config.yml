@@ -24,19 +24,37 @@ description: >- # this means to ignore newlines until "baseurl:"
   El blog personal de Ander Granado, donde Ander Granado cuenta sus mierdas
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
+paginate: 1
+paginate_path: "/page:num/"
 twitter_username: AnderGrM
 github_username:  ander94lakx
 
 permalink: /:year/:month/:day/:title:output_ext
 
-# Build settings
-theme: minima
-#theme: noir-for-jekyll
+# Navbar page list
+nav:
+  - title: Blog
+    url: /archive
+
+  - title: About
+    url: /about
+
+sass:
+  sass_dir: _sass
+  style: :compressed
+
+# Specify the author for blog posts
+author:
+  name: Ander Granado
+  url: https://instagram.com/andergrma
+  email: ander@protonmail.com
 
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-analytics
+  - jekyll-gist
+  - jekyll-paginate
 
 jekyll_analytics:
   GoogleAnalytics:
