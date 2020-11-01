@@ -33,10 +33,10 @@ permalink: /:year/:month/:day/:title:output_ext
 
 # Navbar page list
 nav:
-  - title: Blog
+  - title: Archivo
     url: /archive
 
-  - title: About
+  - title: Acerca de
     url: /about
 
 sass:
