@@ -1,6 +1,278 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Walk on the Byte Side]]></title><description><![CDATA[El blog personal de Ander Granado, donde el susodicho cuenta sus mierdas]]></description><link>https://ander94lakx.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 04 Nov 2021 12:05:18 GMT</lastBuildDate><item><title><![CDATA[Sobre mí]]></title><description><![CDATA[Como habrás podido comprobar por el nombre del blog, me llamo Ander Granado. Soy ingeniero informático, desarrollador de software y hacker…]]></description><link>https://ander94lakx.github.io/pages/about/</link><guid isPermaLink="false">https://ander94lakx.github.io/pages/about/</guid><content:encoded>&lt;p&gt;Como habrás podido comprobar por el nombre del blog, me llamo Ander Granado. Soy ingeniero informático, desarrollador de software y hacker.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Walk on the Byte Side]]></title><description><![CDATA[El blog personal de Ander Granado, donde el susodicho cuenta sus mierdas]]></description><link>https://ander94lakx.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 26 Jan 2022 19:02:52 GMT</lastBuildDate><item><title><![CDATA[Sobre mí]]></title><description><![CDATA[Como habrás podido comprobar por el nombre del blog, me llamo Ander Granado. Soy ingeniero informático, desarrollador de software y hacker…]]></description><link>https://ander94lakx.github.io/pages/about/</link><guid isPermaLink="false">https://ander94lakx.github.io/pages/about/</guid><content:encoded>&lt;p&gt;Como habrás podido comprobar por el nombre del blog, me llamo Ander Granado. Soy ingeniero informático, desarrollador de software y hacker.&lt;/p&gt;
 &lt;p&gt;Este es mi blog, en el que puedes encontrar articulos sobre las cosas con las que voy trasteando, ya sea de programación, sobre hackingo o sobre cualquier cosa que se me pueda pasar por la cabeza. Además de ello, podras encontrar muy poca consistencia a la hora de realizar entradas y un lenguaje relativamente caótico.&lt;/p&gt;
-&lt;p&gt;También tengo una serie de redes sociales donde puedes seguirme. Tengo [Instagram][insta], donde subo principalmente fotos de mis viajes y de lo que leo (muy hipster, lo sé). También tengo [Twitter][twitter], que si no lo tengo abandonado, es lo que uso para enterarme de cosas nuevas del mundo del desarrollo, seguir a artistas, etcétera. Por último, aunque no es una red social, tengo [GitHub][github], donde tengo subidos algunos proyectos, desde proyectos antiguos de la uni hasta algunas cosilla que estoy haciendo (como, por ejemplo, este mismo blog).&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Cómo descargarse las imágenes de un perfil de Instagram con Python y web scrapping]]></title><description><![CDATA[Instagram es la red del postureo. Es probablemente la red social que más uso. Soy demasiado joven como para usar Facebook activamente y…]]></description><link>https://ander94lakx.github.io/blog/2020-04-25-instagram-bot-python/</link><guid isPermaLink="false">https://ander94lakx.github.io/blog/2020-04-25-instagram-bot-python/</guid><pubDate>Sat, 25 Apr 2020 16:33:00 GMT</pubDate><content:encoded>&lt;p&gt;Instagram es la red del postureo. Es probablemente la red social que más uso. Soy demasiado joven como para usar Facebook activamente y demasiado viejo siquiera para plantearme crearme TikTok (si veis que ocurre, os doy permiso para acabar con mi existencia). También uso twitter, pero más como proveedor de “noticias”, pero no publico nada en esa red social.&lt;/p&gt;
+&lt;p&gt;También tengo una serie de redes sociales donde puedes seguirme. Tengo [Instagram][insta], donde subo principalmente fotos de mis viajes y de lo que leo (muy hipster, lo sé). También tengo [Twitter][twitter], que si no lo tengo abandonado, es lo que uso para enterarme de cosas nuevas del mundo del desarrollo, seguir a artistas, etcétera. Por último, aunque no es una red social, tengo [GitHub][github], donde tengo subidos algunos proyectos, desde proyectos antiguos de la uni hasta algunas cosilla que estoy haciendo (como, por ejemplo, este mismo blog).&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Análisis de malware (I): cómo empezar a analizar malware]]></title><description><![CDATA[Estamos rodeados por malware. Todo el mundo ha tenido alguna vez un problema con algún tipo de virus o al menos conoce a alguien que lo haya…]]></description><link>https://ander94lakx.github.io/blog/2022-01-26-malware-analysis-1/</link><guid isPermaLink="false">https://ander94lakx.github.io/blog/2022-01-26-malware-analysis-1/</guid><pubDate>Wed, 26 Jan 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Estamos rodeados por malware. Todo el mundo ha tenido alguna vez un problema con algún tipo de virus o al menos conoce a alguien que lo haya tenido, al igual que conoce o trabaja en alguna empresa a la que le hayan atacado.&lt;/p&gt;
+&lt;p&gt;Personalmente, el malware me parece fascinante. Lo que me fascina es la eficacia que estos tienen. Son cuidadosamente diseñados para cumplir con su labor y hay ejemplos tan sofisticados que es alucinante ver cómo a alguien se le ha podido ocurrir programar algo de esa manera para explotar una vulnerabilidad o utilizar ciertos tipos de mecanismos de evasión.&lt;/p&gt;
+&lt;p&gt;Cada vez que veo una noticia de un nuevo ransomware, troyano o malware de algún tipo, siento curiosidad por saber como funciona. Suelo ojear los informes técnicos que salen de los ataques más sonados en búsqueda de más información y me quedo alucinado por los informes de los analistas. En parte, por las características de los casos que analizan y las formas en las que funcionan los malware, pero, por otra parte, por como son capaces de obtener toda esa información.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/a55d2147e4ec2a0fa38a3889b62b2ebc/0a47e/wannacry.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 75.31645569620254%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAD8ElEQVQ4yz2UWUxUdxTG59nG1gQr20BBUFahYm1tYtIqwaTVLtq0NgoVVKgtdWv70BcXhOAQxmEbNklppC0hpTKYWGNpHC1gDWuHmWEAWUaggIOMwLAUrPDruYPx4cs593//95zv+87JVRm/OMad1JM0n02n+Vw6f574mrrEZH4/eAjj0WNcjz+E4UACtQmJ3PjsMLcOp1B36Ah1Scn8IfmNT+MxHj9Nw7ffcSflGKosH1+q9++nz1BLb42BmvgEzqxaRXFcHFUpyVQlJQkS+SX5KFVHjlCZmMivKSlcO3mC2q9Sqdi7l7r8fFoMBu6W/4AqOyCA6rhdTDQ3M37vHtU7dpLm6UlTYyNt7e00NTXRYe6gra2Vzs5O7HY7s7OzzM/NMTc7x+KTJ8xOTvJkfh57SyuqS8EbqNgQzsObt3DcbqByUwzp3j60SEGz1YrJ9Ddmixmr5F1dXXTabHR0dLij0kA5N3WY+cfxELvZgkofFYEuwhP964HotwaRI7k2NAh7z30c4+M8HBvDOTHBwsICT58+dWN5aYnl5eXnWJKzJWBQKZgfFopGvVYKBaHbGECG14uc/kBNu6lFGPUIbPR0d9PX14drepqZmRlcLheTInNqaup5nF9cXCmo3xRFppc3eRJzIyLJ9FxH1nZvWpruuqW0i4+Kbw8GH9Db28uA5P39/QwODuJwOBgTBdPSaFkYDlmsqIpjtghDf7L8AsjyD0TjraYkcD1WGcJ9+bBb2HXaVrxSPFNgsVjcfvYp73tW2C/IcFYYRkaiDVlLXpQPuQLtRg8yI4Lp6bQyIt2Hh4dF1pRbpsJEweQzqQqcTifT8jwjUx7t6kaVF6J4uI786DCRvEE8fInjH3lR32jEZrVhNpmwDwwwOjLiHtC4TFOJY6OjPBp3uPNhke+aceHsH0BVtDmGi7LcOWHh6ELCuCg7WLBFjcVqondoiN4HdmxycWj8ESMTTsHjleh8zKhgemGRf2Xq/4mHLrmjKoyKRuPlRZavr/joh8ZHpPv585tWx52yMm6XlmIs1mMs1AlynkHH7eI8jEU51Jfqabx8mb/k7r38AlS54RGcDwwkQ60mw8ODC2vWSGFfWiu1/Fio50pBMYW7d1K01VeYv0LRm8GC9eRv9qdom8Rof86veoGLQuanjz9BlSOrci48nLTQMC5IwbTVq8lc9zKGb77kyqlTlKR8TuG7eyiJ3UX5ex9StP0tSt6OpXz3+5S9s4fCHbEUvLGN8n37uH7mrKzNa1vRyEF29KtoRWq22o9LQcHcyi0QKWXUZmRyNVPDTeUHcLWGnw8cxJCaSnt1NfUlJVzTZNH4fTlNFRU06HL5H17jVD73iFp6AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Wannacry&quot;
+        title=&quot;Wannacry en acción&quot;
+        src=&quot;/static/a55d2147e4ec2a0fa38a3889b62b2ebc/0a47e/wannacry.png&quot;
+        srcset=&quot;/static/a55d2147e4ec2a0fa38a3889b62b2ebc/c26ae/wannacry.png 158w,
+/static/a55d2147e4ec2a0fa38a3889b62b2ebc/6bdcf/wannacry.png 315w,
+/static/a55d2147e4ec2a0fa38a3889b62b2ebc/0a47e/wannacry.png 600w&quot;
+        sizes=&quot;(max-width: 600px) 100vw, 600px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Este tipo de informes son realizados por analistas de malware. A veces están dentro de los equipos de DFIR de una empresa, otras son organizaciones gubernamentales o militares y otras veces es un hacker cualquiera posteando en su blog sobre una muestra con la que está jugando. Lo que está claro es que cogen una muestra de un malware y la analizan. Es un campo fascinante que me llama mucho la atención porque mezcla disciplinas que me parecen muy interesantes. Mezcla informática forense con ingeniería inversa y conocimientos a bajo nivel de los sistemas. Es como el plato combinado perfecto.&lt;/p&gt;
+&lt;p&gt;Últimamente he estado aprendiendo sobre esta area. Incluso hace no mucho realicé &lt;a href=&quot;https://github.com/ander94lakx/TFM_Doc&quot;&gt;mi TFM&lt;/a&gt; sobre ello. Para poder recolectar las cosas interesantes que he ido aprendiendo, he decidido escribir una serie de posts (y con ello retomar un poco este blog) sobre el proceso y algunas de las técnicas que se usan. Nno soy un experto en el tema, pero espero poder ayudar a quien lo lea y, por que no, a mi mismo al organizarme las ideas.&lt;/p&gt;
+&lt;h1&gt;¿Qué es el análisis de malware?&lt;/h1&gt;
+&lt;p&gt;El análisis de malware consiste en todas estas técnicas y procesos que permiten obtener información sobre cómo funciona un malware. El funcionamiento de cualquier programa, y por ello también el de un malware, depende de su código. Si se tuviera el código de un malware simplemente bastaría con examinarlo para conocer cómo funciona. En este caso no va a haber esa suerte. Lo mejor que podremos tener es algún tipo de código ofuscado o compilado, normalmente un binario.&lt;/p&gt;
+&lt;p&gt;Hay muchos tipos de malware. Un malware puede ser ese pedacito de JavaScript que se te ha colado en esa web con el objetivo de minar crypto para alguien y, a cambio de ello, convertir tu ordenador en un radiador. Un malware también puede ser ese .exe que te han colado como activador para tu Office pirata. Según el tipo de malware, se analizará de una manera u otra.&lt;/p&gt;
+&lt;p&gt;Yo en este caso me voy a centrar en malware para Windows y para arquitecturas x86 y x86_64. Si se piensa en ejemplos de malware, probablemente lo que más venga a la cabeza sean ejemplos para este tipo de sistemas y son los más comunes de encontrar.&lt;/p&gt;
+&lt;p&gt;En esencia, analizar malware consiste en comprender el funcionamiento de un programa, pero sin tener acceso directamente al código fuente. Es como tener una caja negra e intentar entender como funciona: puedes abrirle las tripas para intentar sacar el código, puedes lanzarla y ver como interactúa dentro de un sistema o puedes coger y analizar la forma de la caja para obtener pistas sobre ella.&lt;/p&gt;
+&lt;h1&gt;¿Qué se hace para analizar un malware?&lt;/h1&gt;
+&lt;p&gt;Hay diferentes procesos y técnicas para analizar malware. Hay incluso procesos y metodologías que se pueden seguir y que estandarizan la forma de hacerlo. Aun con ello, analizar malware consiste, en esencia, en sacar información sobre él: cómo funciona, qué mecanismos tiene para evadirse, cómo y con quién ese comunica, qué mecanismos usa para persistir o propagarse, etc.&lt;/p&gt;
+&lt;p&gt;Las técnicas que se utilizan para sacar esa información son diversas, pero todas ellas se pueden dividir, a grandes rasgos, en las siguientes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Análisis estático&lt;/strong&gt;: consiste en analizar información sobre el malware sin analizar su código ni ejecutarlo: metadatos, firmas, formato y secciones del binario, etc.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/684ecf8e18eee10a71837d2947f4281b/cb9f4/pe-bear.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 43.0379746835443%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAIAAAC9o5sfAAAACXBIWXMAAB2HAAAdhwGP5fFlAAABxUlEQVQozz2QTW7TQBSAp2YbqddgVRatuoILQLuhElyiPUOFYMMRqqg7QGJDRTeREqmA1CMkdpLanvHfeGzXnvH4J/5LzEuDePr0NDOab968h2zb9qjnPAULWBCGjDGRyq5bd/9jvd7y72TdtG1d15u+R6qmYoLrptlsNmmaeiyQRZFwAYgkklJIKdNUAGUhgaKQVZU7jjUajRAh2Gc+mH3fJ0limgZjj5BMneoP3haDYkzv75dnb7+/ef3t9OTL+3c/Li+vB4PnqGlqwzCyLAeZc26aukejxSLUVKqqVNP8+TzAZnT7c6ooHxH6hNAHRfl8cTHc3z9G0CchJI5jkIUQur60bV/TqDpzptMt6sxdzJ3JWDs+Gh4dXgGvXn49P78aDA4RiQmNvP4poLJlEcYC6oWuw1w38NwAMqWR4/iGgQ0d25YTJ2J4ffNMeYGWsftAvarri7aPEm4RAk/AeKAdmcmqXpVFDoPsunZH0zRQ5u7XHwXkUJZBuhJ1D0SxmBlTUQqLWFmWhWEos6wsCmgnh0VZgrlaVSCPx3d7ewdo9+HdtAXn2DXLpuQJFE/B54LnUFmm4MO2bduqquHmZPJbUQ7+AqbMxUSI7RA7AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;PE-bear&quot;
+        title=&quot;Análisis estático con PE-bear&quot;
+        src=&quot;/static/684ecf8e18eee10a71837d2947f4281b/f058b/pe-bear.png&quot;
+        srcset=&quot;/static/684ecf8e18eee10a71837d2947f4281b/c26ae/pe-bear.png 158w,
+/static/684ecf8e18eee10a71837d2947f4281b/6bdcf/pe-bear.png 315w,
+/static/684ecf8e18eee10a71837d2947f4281b/f058b/pe-bear.png 630w,
+/static/684ecf8e18eee10a71837d2947f4281b/40601/pe-bear.png 945w,
+/static/684ecf8e18eee10a71837d2947f4281b/78612/pe-bear.png 1260w,
+/static/684ecf8e18eee10a71837d2947f4281b/cb9f4/pe-bear.png 1903w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Análisis dinámico&lt;/strong&gt;: también llamado análisis de comportamiento, consiste en analizar la muestra mientras se ejecuta: ficheros con los que interactúa, llamadas al sistema, trafico de red, cambios en el registro, etc.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/3719ac4e16056d99266dbb94e74a9824/22b88/wireshark.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 26.58227848101266%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAIAAADKYVtkAAAACXBIWXMAAB2HAAAdhwGP5fFlAAAA6klEQVQY0x2Pi26DMAxF+f9fWl8UEkISEvIgIaZQ0FoK2z5ibqUj61xLlu2Mxbr0NO0JfoB4WieOriaNFJaUjvDEWWQiCQHCfbt+68MawxrCK2a546e2Mk+wK5xNlXtuHkBTS3t1UOTY0outT4ZdO1HGpowKaxEkRtKrrPAcZ9wL/DbklhUdR2egSZRHVWJHjFZMb+Tk6sHw8U19M3Ky2cXxg6btE8w64Am5F+jvzdB+NeRsmJyDuHt+92LumiXKBWOH6EfKJOBL9Pabxj+oYyUHjm5mbWdd2mvliR4bt+gPbb92sEfYPuzxH/LH9huFe/ZcAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Wireshark&quot;
+        title=&quot;Captura de tráfico de red con Wireshark&quot;
+        src=&quot;/static/3719ac4e16056d99266dbb94e74a9824/f058b/wireshark.png&quot;
+        srcset=&quot;/static/3719ac4e16056d99266dbb94e74a9824/c26ae/wireshark.png 158w,
+/static/3719ac4e16056d99266dbb94e74a9824/6bdcf/wireshark.png 315w,
+/static/3719ac4e16056d99266dbb94e74a9824/f058b/wireshark.png 630w,
+/static/3719ac4e16056d99266dbb94e74a9824/40601/wireshark.png 945w,
+/static/3719ac4e16056d99266dbb94e74a9824/78612/wireshark.png 1260w,
+/static/3719ac4e16056d99266dbb94e74a9824/22b88/wireshark.png 2567w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;Análisis de código&lt;/em&gt;: como su nombre indica, consiste en observar el código y se distingue en dos tipos:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/2920350229ea478f746f2e8628004964/e5085/ghidra.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 33.54430379746836%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAIAAACHqfpvAAAACXBIWXMAAB2HAAAdhwGP5fFlAAABOUlEQVQY0z2Q107DMBSG8/6vhCoosxdtVMQIuKGZTpzROt6OnYFJgU//1dH5dIaHSpTnMEnipm2FEIQSyliv9eCwg9LKmF72SmppjLHWDguu6PDegxAc3h43m9X1+mq1Xt8+3N9tdv7e959f98HW94OPzxcQBACkeZFlLlkGyyhO0zT2bp58ynkBYYdxXNCkUAfQJlB+hTgMcZSwvLXlaYInm7U6aeQR0ajix5KjuvPiNB/GsaqQ2wqzIUUMNv2ZzmVjGqLrTndixmI+sbHlY0lUeqYZZogYwpQ3LyCELidBCKuKGDMSIpXijBOtzRIrZe9Onv+QUnqMMc65c+wCxriumZQ/rVprjM8YE9rx3jhzHAe35TBN06+8222jKAIALD80blZVcSFt37sYSmmHuRD6Ms1pru1f/gbxnobFYuHhKAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Ghidra&quot;
+        title=&quot;Ghidra para análisis de código&quot;
+        src=&quot;/static/2920350229ea478f746f2e8628004964/f058b/ghidra.png&quot;
+        srcset=&quot;/static/2920350229ea478f746f2e8628004964/c26ae/ghidra.png 158w,
+/static/2920350229ea478f746f2e8628004964/6bdcf/ghidra.png 315w,
+/static/2920350229ea478f746f2e8628004964/f058b/ghidra.png 630w,
+/static/2920350229ea478f746f2e8628004964/40601/ghidra.png 945w,
+/static/2920350229ea478f746f2e8628004964/78612/ghidra.png 1260w,
+/static/2920350229ea478f746f2e8628004964/e5085/ghidra.png 2325w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Análisis estático de código&lt;/strong&gt;: analizar el código sin ejecutarlo.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Análisis dinámico de código&lt;/strong&gt;: analizar el código mientras se ejecuta, es decir, depurarlo.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Como se puede ver, todo lo estático esta relacionado con analizar sin ejecutar, mientras que la parte dinámica tiene que tener el malware en ejecución. También se puede distinguir entre técnicas en función de si se analiza el código o no. Al analizar una muestra, lo normal es que se realicen algunos tipos de tareas antes que otras. Las técnicas de análisis estático suelen ser fáciles de realizar y suelen hacerse al principio. Por el contrario, analizar el código es una tarea tediosa y suele hacerse más adelante, Aunque todo ello depende del proceso y del analista.&lt;/p&gt;
+&lt;h1&gt;¿Como empiezo a analizar malware?&lt;/h1&gt;
+&lt;p&gt;Aquí no hay discusión, para analizar malware necesitas un entorno aislado. Coger malware y meterlo en tu ordenador para comenzar a trastear con él es mala idea. Si nadie quiere que se le cuele malware en su equipo sin querer, como para hacerlo a propósito.&lt;/p&gt;
+&lt;p&gt;La mejor forma para tener un entorno aislado es hacer uso de una máquina virtual. Se puede usar lo que se quiera (VirtualBox, VMWare, …). En mi caso soy más de usar VirtualBox, pero cualquiera es perfectamente válido. Una vez se tenga el software de virtualización, hace falta crear obtener una ISO con Windows, crear la maquina virtual, cargar la imagen en… ¿O quizás no?.&lt;/p&gt;
+&lt;p&gt;Es cierto que uno mismo puede buscar la ISO, crear la máquina e instalar Windows en ella, pero hay una forma más sencilla de obtener una VM con Windows, y es descargarla directamente de internet. La mejor opción son las VM que ofrece Microsoft para desarrolladores. Hay varias opciones. Se puede optar por una maquina que tiene un &lt;a href=&quot;https://developer.microsoft.com/en-us/windows/downloads/virtual-machines/&quot;&gt;entorno de desarrollo completo&lt;/a&gt; (es más grande, pero si se quiere ademas usarla para desarrollar malware puede estar bien), o las máquinas virtuales que tienen &lt;a href=&quot;https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/&quot;&gt;para testear aplicaciones&lt;/a&gt; en Edge, más ligeras y, en mi opinión, la mejor opción. De estas últimas, ademas de Windows 10, también hay versiones para Windows 7 y Windows 8, que para malwares viejos puede ser interesante. Hay versiones para los software más famosos, como VirtualBox o VMWare, así que con seleccionar la version deseada, bajarse el archivo y cargarlo en el software de virtualización necesario es más que suficiente.&lt;/p&gt;
+&lt;h2&gt;¿Qué herramientas necesito para analizar malware?&lt;/h2&gt;
+&lt;p&gt;Con una máquina virtual ya lista solo hace falta prepararla con las herramientas necesarias para analizar malware. Hay una gran cantidad de herramientas para analizar malware. Algunas como IDA o Ghidra sonarán a muchos. Al principio es normal no tener ni idea de cuales instalar. Lo mejor para estos casos es hacer uso de &lt;a href=&quot;https://github.com/mandiant/flare-vm&quot;&gt;FLARE-VM&lt;/a&gt;, una herramienta para instalar y mantener actualizados todo un conjunto de herramientas para analizar malware.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/81219b49f7a2824efef3ff099ab9d36c/914ae/flare-install.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 19.62025316455696%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAIAAAABPYjBAAAACXBIWXMAAB2HAAAdhwGP5fFlAAAA8klEQVQI12NYtXn/mi371287uHbLni17du09dnT34VN7j57fuu/0+l0noGjn8fU7T6zbeRyI1u44vmrr4WUbD5w8d5lByiIViORsMkSM4/n0g/j0A3n1gvl0o7l1YpjVIhgUwxiUwhiUw4GIUSWCURWEWDWiGGSDpszfwKBgna5sn6lom65om6ZgkylvnaVgmylrnaZgmyFvk6Fkl6lolwlUIGGWzKcXy6UTy60Ty68fz6AUOnXBBgZJ8xQZq1QZyzQp8xhpi1A56xgxk3gxkwRF2wwJ0yR+gwQho0RevTgu7RgmlQiIE5hUIxikAqYs3AgA6XhVYc6P6bsAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Flare install&quot;
+        title=&quot;Proceso de instalación de FLARE-VM&quot;
+        src=&quot;/static/81219b49f7a2824efef3ff099ab9d36c/f058b/flare-install.png&quot;
+        srcset=&quot;/static/81219b49f7a2824efef3ff099ab9d36c/c26ae/flare-install.png 158w,
+/static/81219b49f7a2824efef3ff099ab9d36c/6bdcf/flare-install.png 315w,
+/static/81219b49f7a2824efef3ff099ab9d36c/f058b/flare-install.png 630w,
+/static/81219b49f7a2824efef3ff099ab9d36c/914ae/flare-install.png 860w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Con usar esta herramienta sobre nuestra máquina y dejarle un rato para que instale todo, tendremos una maquina con todas las herramientas que se necesitan. Es la mejor opción, sobre todo, para probar todo tipo de herramientas y ya, en un futuro, poder crearte tu propio laboratorio solo con las herramientas que te gusten. La única desventaja que tiene usar algo como FLARE-VM es que nos va a engordar nuestra VM considerablemente (unos 60GB de VM ya te deja). A parte de eso, es tan sencillo como seguir los &lt;a href=&quot;https://github.com/mandiant/flare-vm#windows-10-installation&quot;&gt;pasos de instalación&lt;/a&gt; indicados en su repositorio.&lt;/p&gt;
+&lt;p&gt;También existen otro tipo de herramientas o directamente distribuciones que vienen ya con todo listo para usar. Una de mis favoritas es &lt;a href=&quot;https://remnux.org/&quot;&gt;Remnux&lt;/a&gt;, una distribución linux que viene prácticamente con todo. Tiene herramientas hasta para analizar malware para Windows. El único problema que tiene para analizar malware para Windows es que no vamos a poder ejecutarlo sobre esa máquina. Aun asi, es muy recomendable también.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/4390a34195b25461bab8461044f13c64/7798c/remnux.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 72.78481012658227%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAIAAABr+ngCAAAACXBIWXMAAB2HAAAdhwGP5fFlAAAAlElEQVQoz2MQExOTkpKSlJQUQgKCgoKioqJAcSAJZKNJycvLy8nJiYuLM1AKGMkFDNQHQFOZYICBTgDiE2Vl5cDAQHsHRxdHO0VRXmI1MzMzA0lPT88Z06cXFBatWjTXVIYTbihRNktLSdqZ6hkb6Nqb6Ytzg7zNSD+fA8MZSDIzM9HYnoFIYQakA319fWNjYy8vLwCl2BzPHf9WGwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Remnux&quot;
+        title=&quot;Distribucion Remnux&quot;
+        src=&quot;/static/4390a34195b25461bab8461044f13c64/f058b/remnux.png&quot;
+        srcset=&quot;/static/4390a34195b25461bab8461044f13c64/c26ae/remnux.png 158w,
+/static/4390a34195b25461bab8461044f13c64/6bdcf/remnux.png 315w,
+/static/4390a34195b25461bab8461044f13c64/f058b/remnux.png 630w,
+/static/4390a34195b25461bab8461044f13c64/40601/remnux.png 945w,
+/static/4390a34195b25461bab8461044f13c64/7798c/remnux.png 1183w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Si, aun así quieres instalar las herramientas a mano, te dejo algunas de las herramientas que me gustan a mí. Hay muchas mas, y esto depende de gustos y necesidades, pero a mí, algunas de las que me gustan son:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Para análisis estático:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.winitor.com/&quot;&gt;PEstudio&lt;/a&gt; y &lt;a href=&quot;https://github.com/horsicq/Detect-It-Easy&quot;&gt;DIE&lt;/a&gt; para analizar binarios.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://ssdeep-project.github.io/ssdeep/index.html&quot;&gt;ssdeep&lt;/a&gt; y &lt;a href=&quot;https://virustotal.github.io/yara/&quot;&gt;YARA&lt;/a&gt; (y las &lt;a href=&quot;https://github.com/Yara-Rules/rules&quot;&gt;Yara-Rules&lt;/a&gt;) para clasificar y buscar malware similar.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/mandiant/capa&quot;&gt;capa&lt;/a&gt; para obtener de un vistazo pistas sobre las capacidades de una muestra.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Para análisis de código:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://hex-rays.com/ida-free/&quot;&gt;IDA&lt;/a&gt; para reversing y analizar código.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://ghidra-sre.org/&quot;&gt;Ghidra&lt;/a&gt; para cuando no puedas decompilar las muestras en IDA porque no te sobran miles de euros.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://x64dbg.com/&quot;&gt;x64dbg&lt;/a&gt; para &lt;del&gt;crackear videojuegos&lt;/del&gt; depurar muestras.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Mejora mucho con &lt;a href=&quot;https://github.com/x64dbg/ScyllaHide&quot;&gt;ScyllaHide&lt;/a&gt; y &lt;a href=&quot;https://github.com/ThunderCls/xAnalyzer&quot;&gt;xAnalizer&lt;/a&gt;, dos plugins indispensables.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Para análisis de comportamiento:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://processhacker.sourceforge.io/&quot;&gt;Process Hacker&lt;/a&gt; y las &lt;a href=&quot;https://docs.microsoft.com/en-us/sysinternals/&quot;&gt;SysInternals&lt;/a&gt; de Windows, en especial &lt;a href=&quot;https://docs.microsoft.com/en-us/sysinternals/downloads/procmon&quot;&gt;Process Monitor&lt;/a&gt; para poder monitorizar y analizar procesos y eventos del sistema.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Los PML de Process Monitor son tu mayor aliado.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://sourceforge.net/projects/regshot/&quot;&gt;Regshot&lt;/a&gt; para capturar y comparar cambios en el registro.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.wireshark.org/&quot;&gt;Wireshark&lt;/a&gt; para capturar y analizar tráfico de red.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://belkasoft.com/es/bat&quot;&gt;Belkasoft Acquisition Tool&lt;/a&gt; para volcados de memoria&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Otros:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://mh-nexus.de/en/hxd/&quot;&gt;HxD&lt;/a&gt; como editor hexadecimal.&lt;/li&gt;
+&lt;li&gt;Una taza con café al lado.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;¿Y ahora qué?&lt;/h1&gt;
+&lt;p&gt;Con todo listo y preparado, solo queda buscar una muestra para empezar a jugar. Para no abrumarse demasiado, lo mejor es optar por muestras de malware que ya hayan sido analizadas y no sean demasiado complejas. En repositorios como &lt;a href=&quot;https://github.com/ytisf/theZoo&quot;&gt;TheZoo&lt;/a&gt; hay muestras de malwares famosos. También se puede buscar alguno concreto en plataformas como &lt;a href=&quot;https://bazaar.abuse.ch/&quot;&gt;MalwareBazaar&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Otra opción consiste en probar este tipo de herramientas y técnicas con crackmes. Un crackme es el equivalente a una máquina de Hack The Box o TryHackMe pero para reversing. No son específicos para analizar malware, pero las técnicas que se usan con, en esencia, las mismas. Webs como &lt;a href=&quot;https://crackmes.one/&quot;&gt;crackmes.one&lt;/a&gt; tienen muchos crackmes de diferentes dificultades con los que practicar.&lt;/p&gt;
+&lt;p&gt;En los próximos posts explicare algunas de estas técnicas sobre una muestra de malware real para poder ver como se aplican las diferentes técnicas y como se usan las herramientas.&lt;/p&gt;
+&lt;p&gt;Happy hacking!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Cómo descargarse las imágenes de un perfil de Instagram con Python y web scrapping]]></title><description><![CDATA[Instagram es la red del postureo. Es probablemente la red social que más uso. Soy demasiado joven como para usar Facebook activamente y…]]></description><link>https://ander94lakx.github.io/blog/2020-04-25-instagram-bot-python/</link><guid isPermaLink="false">https://ander94lakx.github.io/blog/2020-04-25-instagram-bot-python/</guid><pubDate>Sat, 25 Apr 2020 16:33:00 GMT</pubDate><content:encoded>&lt;p&gt;Instagram es la red del postureo. Es probablemente la red social que más uso. Soy demasiado joven como para usar Facebook activamente y demasiado viejo siquiera para plantearme crearme TikTok (si veis que ocurre, os doy permiso para acabar con mi existencia). También uso twitter, pero más como proveedor de “noticias”, pero no publico nada en esa red social.&lt;/p&gt;
 &lt;p&gt;Por lo tanto, todas mis publicaciones suelen ir a Instagram. A lo largo de los años me he dado cuenta de que se ha convertido en una especie de diario de hitos personales. Por encima de las fotos de mis viajes se pueden ver y observar fotos de cuando me saqué la carrera, de cuando vivía en Madrid y estaba en un estudio programando un videojuego o de buenos momentos con amigos. Aunque la calidad de las imágenes puede no ser la mejor, me gusta meterme de vez en cuando ahí y ver todos esos viajes y momentos.&lt;/p&gt;
 &lt;p&gt;Aun así, soy informático y se que la única manera de que tu información pueda estar segura es tener tú mismo una copia. Por ello llevaba tiempo planteándome realizar algún script que me permitiera bajarme todas las fotos de mi perfil. También podia usar esto para refrescar un poco Python y practicar algo de Web Scrapping.&lt;/p&gt;
 &lt;h1&gt;Web Scrapping con Selenium&lt;/h1&gt;
