@@ -56,7 +56,7 @@
   --fontSize-5: 2.074rem;
   --fontSize-6: 2.488rem;
   --fontSize-7: 2.986rem;
-  --color-primary: #ea4444;
+  --color-primary: #00b000;
   --color-text: #1a2c3d;
   --color-text-light: #4f5969;
   --color-heading: #1a202c;
@@ -97,11 +97,11 @@ body {
 body.dark {
   -webkit-font-smoothing: antialiased;
 
-  --color-background: #2b2b2b;
+  --color-background: #202020;
   --color-text: #fefcf8;
   --color-text-light: #d1dce5;
-  --color-heading-black: #ea4444;
-  --color-heading: #ea4444;
+  --color-heading-black: #00c600;
+  --color-heading: #00c600 ;
 }
 
 
