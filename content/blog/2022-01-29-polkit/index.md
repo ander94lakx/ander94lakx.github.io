@@ -68,6 +68,10 @@ A modo de resumen, os dejo unos puntos que me vienen a la cabeza tras ver una vu
 - Cuanta más gente este del lado de los buenos, más vulnerabilidades de este tipo se podrán descubrir y con mayor rapidez.
     - Imaginaos las consecuencias de que esto caiga en malas manos (y no solo hablo de cibercriminales ;))
 
+Asi, que ya sabéis, a actualizar vuestros sistemas!
+
+Happy hacking!
+
 ## ¡Exijo más detalles!
 
 Pues aquí los tienes:
