@@ -18,7 +18,7 @@ Esto es util porque hay muchos casos en los que interesa que un proceso interact
 
 Polkit tiene una utilidad llamada [pkexec](https://linux.die.net/man/1/pkexec). Esta utilidad permite ejecutar comandos como otro usuario o como root. Esta utilidad tiene una vulnerabilidad, ya que no parsea bien el número de parámetros que recibe y permite ejecutar variables de entorno como comandos (!).
 
-Entonces, según lo que se le pase como variables de entorno, se puede ejecutar código arbitrario. De ahi, se escala privilegios y se consigue permisos de admin, es decir, root.
+Entonces, según lo que se le pase como variables de entorno, se puede ejecutar código arbitrario. De ahí, se escala privilegios y se consigue permisos de admin, es decir, root.
 
 ## ¿Cómo se puede explotar la vulnerabilidad?
 
@@ -66,9 +66,9 @@ A modo de resumen, os dejo unos puntos que me vienen a la cabeza tras ver una vu
 - Cuidad vuestras entradas, sobre todo en lenguajes como C y al tratar con elementos a mas bajo nivel.
 - Nunca se puede estar completamente seguro. Siempre hay vulnerabilidades que no conocemos pero que pueden ser descubiertas por otros.
 - Cuanta más gente este del lado de los buenos, más vulnerabilidades de este tipo se podrán descubrir y con mayor rapidez.
-    - Imaginaos las consecuencias de que esto caiga en malas manos (y no solo hablo de cibercriminales ;))
+    - Imaginaos las consecuencias de que esto caiga en malas manos (y no solo hablo de cibercriminales ;)).
 
-Asi, que ya sabéis, a actualizar vuestros sistemas!
+Así que ya sabéis, a actualizar vuestros sistemas!
 
 Happy hacking!
 
@@ -76,7 +76,7 @@ Happy hacking!
 
 Pues aquí los tienes:
 
-- El [reporte original](https://www.qualys.com/2022/01/25/cve-2021-4034/pwnkit.txt)
-- Artículo en [su blog](https://blog.qualys.com/vulnerabilities-threat-research/2022/01/25/pwnkit-local-privilege-escalation-vulnerability-discovered-in-polkits-pkexec-cve-2021-4034)
+- El [reporte original](https://www.qualys.com/2022/01/25/cve-2021-4034/pwnkit.txt).
+- Artículo en [su blog](https://blog.qualys.com/vulnerabilities-threat-research/2022/01/25/pwnkit-local-privilege-escalation-vulnerability-discovered-in-polkits-pkexec-cve-2021-4034).
 
 _PD_: explicaría en detalle la vulnerabilidad, pero creo que ya esta muy bien explicada en cientos de artículos y videos, y no me voy a creer mejor que ellos. Mi objetivo aquí era simplemente hacer un breve resumen de una vulnerabilidad que me ha parecido interesante.
