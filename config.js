@@ -7,7 +7,7 @@ module.exports = {
   title: `Walk on the Byte Side`,
   disqusShortname: '',
   postsPerPage: 15,
-  // googleAnalyticsId: '',
+  googleAnalyticsId: 'G-EPK628CMMZ',
   useKatex: false,
   author: {
     name: `Ander Granado`,
