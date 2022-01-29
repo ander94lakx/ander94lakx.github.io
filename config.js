@@ -11,7 +11,7 @@ module.exports = {
   useKatex: false,
   author: {
     name: `Ander Granado`,
-    summary: `, Ingeniero informático, desarrollador de software y hacker`,
+    summary: `, Hacker, Cybersecurity Consultant & Software Engineer`,
     social: {
       twitter: `andergrma`,
       github: `ander94lakx`,
