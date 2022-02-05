@@ -31,6 +31,9 @@ const Layout = ({ location, title, children }) => {
           <header className="global-header">
             {headerSiteText}
             <div className="header-actions">
+              <Link className="header-nav-link" to="/pages/pgp/">
+                /pgp
+              </Link>
               <Link className="header-nav-link" to="/pages/about/">
                 /about
               </Link>
