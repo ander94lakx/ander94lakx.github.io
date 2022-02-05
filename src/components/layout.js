@@ -32,7 +32,7 @@ const Layout = ({ location, title, children }) => {
             {headerSiteText}
             <div className="header-actions">
               <Link className="header-nav-link" to="/pages/about/">
-                Sobre mí
+                /about
               </Link>
               <button className="toggle-button header-nav-link"
                 onClick={e => toggleTheme(theme === 'light' ? 'dark' : 'light')}
@@ -44,7 +44,7 @@ const Layout = ({ location, title, children }) => {
           <main>{children}</main>
           <footer className="d-flex">
             <div className="copyright-text">
-              Copyright © {new Date().getFullYear()},&nbsp;
+              Copyleft &#127279; {new Date().getFullYear()},&nbsp;
               <a href="https://github.com/ander94lakx">Ander Granado</a>
             </div>
             <div className="footer-icon-group">

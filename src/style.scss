@@ -34,8 +34,10 @@
   --fontFamily-serif: "Merriweather", "Georgia", Cambria, "Times New Roman",
     Times, serif;
   --fontFamily-raleway: 'Barlow', sans-serif;
+  --fontFamily-fira: 'Fira Code', 'Barlow', sans-serif;
   --font-body: var(--fontFamily-raleway);
   --font-heading: var(--fontFamily-raleway);
+  --font-monospaced: var(--fontFamily-fira);
   --fontWeight-normal: 400;
   --fontWeight-medium: 500;
   --fontWeight-semibold: 600;
@@ -106,7 +108,8 @@ body.dark {
 
 
 footer {
-  font-size: var(--fontSize-1);
+  font-size: var(--fontSize-0);
+  font-family: var(--fontFamily-fira);
   padding: var(--spacing-6) var(--spacing-0);
 }
 
@@ -128,7 +131,7 @@ h6 {
   margin-top: var(--spacing-12);
   margin-bottom: var(--spacing-6);
   line-height: var(--lineHeight-tight);
-  letter-spacing: -0.025em;
+  // letter-spacing: -0.025em;
 }
 
 h2,
@@ -300,11 +303,13 @@ a:focus {
   align-items: flex-end;
   border-bottom: 2px solid;
   margin-bottom: var(--spacing-12);
+  font-family: var(--font-monospaced);
 
 }
 
 .main-heading {
   font-size: var(--fontSize-7);
+  font-family: var(--fontFamily-fira);
   margin: 0;
 }
 
@@ -330,7 +335,6 @@ a:focus {
 
 .header-link-home {
   font-weight: var(--fontWeight-bold);
-  font-family: var(--font-heading);
   text-decoration: none;
   font-size: var(--fontSize-5);
 }
@@ -461,7 +465,8 @@ a:focus {
     margin-bottom: 0;
     display: flex;
     align-items: center;
-
+    font-family: var(--font-monospaced);
+    font-size: var(--fontSize-1);
     .title {
       white-space: nowrap;
       overflow: hidden;
@@ -552,7 +557,7 @@ a:focus {
   }
 
   .header-link-home, .main-heading{
-    width: 75%;
+    width: 80%;
     text-align: left;
   }
 
