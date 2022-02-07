@@ -1,7 +1,7 @@
 ---
 template: post
 title: "No tenemos ni idea de cómo hacer teletrabajo y cómo podemos solucionarlo"
-date:  2020-04-11 18:33:00 +0200
+date:  2020-04-11
 tags: coronavirus programacion trabajo remoto
 author: Ander Granado
 ---
