@@ -43,7 +43,19 @@ module.exports = {
               wrapperStyle: `margin-bottom: 1.0725rem`,
             },
           },
-          `gatsby-remark-prismjs`,
+          {
+            resolve: `gatsby-remark-embed-gist`,
+            options: {
+              gistDefaultCssInclude: true,
+              // gistCssUrlAddress: `https://raw.githubusercontent.com/lonekorean/gist-syntax-themes/master/stylesheets/one-dark.css`,
+            },
+          },
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              showLineNumbers: true,
+            },
+          },
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
         ],
