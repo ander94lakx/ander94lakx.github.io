@@ -1,0 +1,155 @@
+baseURL = 'https://ander94lakx.github.io'
+languageCode = 'es-es'
+title = 'My New Hugo Site'
+theme = "terminal"
+
+copyright = "Copyleft 🄯 2022, Ander Granado"
+
+googleAnalytics = "G-EPK628CMMZ"
+
+[author]
+	name = "Ander Granado"
+	email = "ander@protonmail.com"
+
+[permalinks]
+  posts = "blog/:title"
+
+[params]
+  # dir name of your main content (default is `content/posts`).
+  # the list of set content will show up on your index page (baseurl).
+  contentTypeName = "blog"
+
+  # ["orange", "blue", "red", "green", "pink"]
+  themeColor = "green"
+
+  # if you set this to 0, only submenu trigger will be visible
+  showMenuItems = 5
+
+  # show selector to switch language
+  showLanguageSelector = false
+
+  # set theme to full screen width
+  fullWidthTheme = false
+
+  # center theme with default width
+  centerTheme = true
+
+  # if your resource directory contains an image called `cover.(jpg|png|webp)`,
+  # then the file will be used as a cover automatically.
+  # With this option you don't have to put the `cover` param in a front-matter.
+  autoCover = true
+
+  # set post to show the last updated
+  # If you use git, you can set `enableGitInfo` to `true` and then post will automatically get the last updated
+  showLastUpdated = false
+
+  # set a custom favicon (default is a `themeColor` square)
+  favicon = "favicon.ico"
+
+  # Provide a string as a prefix for the last update date. By default, it looks like this: 2020-xx-xx [Updated: 2020-xx-xx] :: Author
+  # updatedDatePrefix = "Updated"
+
+  # set all headings to their default size (depending on browser settings)
+  # oneHeadingSize = true # default
+
+  # whether to show a page's estimated reading time
+  readingTime = true # default
+
+  # whether to show a table of contents
+  # can be overridden in a page's front-matter
+  # Toc = false # default
+
+  # set title for the table of contents
+  # can be overridden in a page's front-matter
+  # TocTitle = "Table of Contents" # default
+
+
+[params.twitter]
+  # set Twitter handles for Twitter cards
+  # see https://developer.twitter.com/en/docs/tweets/optimize-with-cards/guides/getting-started#card-and-content-attribution
+  # do not include @
+  creator = "andergrma"
+  site = ""
+
+[languages]
+  [languages.es]
+    languageName = "Español"
+    title = "Walk on the Byte Side"
+    subtitle = ""
+    owner = "Ander Granado"
+    keywords = ""
+    copyright = ""
+    menuMore = "Mostrar más"
+    readMore = "Leer más"
+    readOtherPosts = "Leer otros posts"
+    newerPosts = "Más nuevos"
+    olderPosts = "Más antiguos"
+    missingContentMessage = "Page not found..."
+    missingBackButtonLabel = "Volver a la página de inicio"
+
+    [languages.es.params.logo]
+      logoText = "Walk on the Byte side"
+      logoHomeLink = "/"
+
+    [languages.es.menu]
+      [[languages.es.menu.main]]
+        identifier = "about"
+        name = "Sobre mí"
+        url = "/about"
+      [[languages.en.menu.main]]
+        identifier = "twitter"
+        name = "Twitter"
+        url = "https://twitter.com/andergrma"
+      [[languages.en.menu.main]]
+        identifier = "instagram"
+        name = "Instagram"
+        url = "https://www.instagram.com/andergrma/"
+      [[languages.en.menu.main]]
+        identifier = "github"
+        name = "GitHub"
+        url = "https://github.com/ander94lakx/"
+      [[languages.es.menu.main]]
+        identifier = "pgp"
+        name = "PGP"
+        url = "/pgp"
+
+  [languages.en]
+    languageName = "English"
+    title = "Walk on the Byte Side"
+    subtitle = ""
+    owner = "Ander Granado"
+    keywords = ""
+    copyright = ""
+    menuMore = "Show more"
+    readMore = "Read more"
+    readOtherPosts = "Read other posts"
+    newerPosts = "Newer posts"
+    olderPosts = "Older posts"
+    missingContentMessage = "Page not found..."
+    missingBackButtonLabel = "Back to home page"
+
+    [languages.en.params.logo]
+      logoText = "Walk on the Byte Side"
+      logoHomeLink = "/"
+
+    [languages.en.menu]
+      [[languages.en.menu.main]]
+        identifier = "about"
+        name = "About"
+        url = "/about"
+      [[languages.en.menu.main]]
+        identifier = "twitter"
+        name = "Twitter"
+        url = "https://twitter.com/andergrma"
+      [[languages.en.menu.main]]
+        identifier = "instagram"
+        name = "Instagram"
+        url = "https://www.instagram.com/andergrma/"
+      [[languages.en.menu.main]]
+        identifier = "github"
+        name = "GitHub"
+        url = "https://github.com/ander94lakx/"
+      [[languages.en.menu.main]]
+        identifier = "pgp"
+        name = "PGP"
+        url = "/pgp"
