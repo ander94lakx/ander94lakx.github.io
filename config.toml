@@ -3,9 +3,13 @@ languageCode = 'es-es'
 title = 'My New Hugo Site'
 theme = "terminal"
 
+defaultContentLanguage = 'es'
+
 copyright = "Copyleft 🄯 2022, Ander Granado"
 
 googleAnalytics = "G-EPK628CMMZ"
+
+enableEmoji = true
 
 [author]
 	name = "Ander Granado"
@@ -90,28 +94,32 @@ googleAnalytics = "G-EPK628CMMZ"
     [languages.es.params.logo]
       logoText = "Walk on the Byte side"
       logoHomeLink = "/"
-
     [languages.es.menu]
       [[languages.es.menu.main]]
         identifier = "about"
         name = "Sobre mí"
         url = "/about"
-      [[languages.en.menu.main]]
+        weight = 1
+      [[languages.es.menu.main]]
         identifier = "twitter"
         name = "Twitter"
         url = "https://twitter.com/andergrma"
-      [[languages.en.menu.main]]
+        weight = 2
+      [[languages.es.menu.main]]
         identifier = "instagram"
         name = "Instagram"
         url = "https://www.instagram.com/andergrma/"
-      [[languages.en.menu.main]]
+        weight = 3
+      [[languages.es.menu.main]]
         identifier = "github"
         name = "GitHub"
         url = "https://github.com/ander94lakx/"
+        weight = 4
       [[languages.es.menu.main]]
         identifier = "pgp"
         name = "PGP"
         url = "/pgp"
+        weight = 5
 
   [languages.en]
     languageName = "English"
@@ -137,19 +145,24 @@ googleAnalytics = "G-EPK628CMMZ"
         identifier = "about"
         name = "About"
         url = "/about"
+        weight = 1
       [[languages.en.menu.main]]
         identifier = "twitter"
         name = "Twitter"
         url = "https://twitter.com/andergrma"
+        weight = 2
       [[languages.en.menu.main]]
         identifier = "instagram"
         name = "Instagram"
         url = "https://www.instagram.com/andergrma/"
+        weight = 3
       [[languages.en.menu.main]]
         identifier = "github"
         name = "GitHub"
         url = "https://github.com/ander94lakx/"
+        weight = 4
       [[languages.en.menu.main]]
         identifier = "pgp"
         name = "PGP"
         url = "/pgp"
+        weight = 5
