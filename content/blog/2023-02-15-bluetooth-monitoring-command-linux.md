@@ -1,19 +1,20 @@
 ---
 title: "Cómo monitorizar dispositivos bluetooth cercanos con un solo comando"
-date: 2023-02-15T20:00:00+01:00
+date: 2023-02-16T16:00:00+01:00
 tags: ["wireless", "bluetooth", "linux", "info-gathering", "bluetoothctl", "awk"]
-draft: true
 ---
 
-Me encanta Linux. Con la terminal te sientes poderoso. No es que sea un experto en ella, pero cuando te sabes manejar un poco con ella puedes realizar muchas cosas.
+Aspaldiko! Llevaba mucho tiempo sin pasarme por aquí, han sido unos meses con bastante lío (trabajo, mudanza, navidades,... mil cosas), pero ya era hora de que retomara un poco la actividad en el blog. Aunque todavía tengo que retomar la serie sobre análisis de malware, he decidido que, mientras tanto, voy a ir poniendo algún post sobre alguna cosa que he ido trasteando últimamente, como este, sobre monitorizar dispositivos bluetooth.
+
+Me encanta Linux. Con la terminal te sientes poderoso. No es que sea un experto en ella, pero cuando te sabes manejar un poco se pueden realizar muchas cosas.
 
 El otro día quise hacer un pequeño script para monitorizar los dispositivos bluetooth que tengo a mi alrededor. Lo veía como un ejercicio interesante para obtener datos, como saber cuántos dispositivos tengo cerca, ver que tipo de dispositivos son, cuantos dispositivos vienen y van, y ver que se puede hacer con esa información.
 
-Mi instinto al querer hacer algo del estilo es hacer un script (putos programadores, siempre [reinventando la rueda](https://www.npmjs.com/package/is-odd)). El lenguaje de scripting con el que más comodo me siento es Python, por lo que pensé en usarlo para hacer esto. Después pensé que, en realidad, lo que quería hacer era usa la salida de un comando (`bluetoothctl`), hacer cuatro cosas y volcarlo a un archivo.
+Mi instinto al querer hacer algo del estilo es hacer un script (malditos programadores, siempre [reinventando la rueda](https://www.npmjs.com/package/is-odd)). El lenguaje de scripting con el que más comodo me siento es Python, por lo que pensé en usarlo para hacer esto. Después pensé que, en realidad, lo que quería hacer no era más que usar la salida de un comando (`bluetoothctl`), hacer cuatro cosas y volcarlo a un archivo.
 
-Entoces se me ocurrio que lo que deberia hacer es más un shell script que usar algo tan *overkill* como Python. Así, lo podia usar siempre, menos dependencias, etc.
+Entoces se me ocurrió que, para eso, lo que debería hacer es más un shell script que usar algo tan *overkill* como Python. Así, lo podía usar siempre, menos dependencias, etc.
 
-Dandole una vuelta más, me planteé si realmente era necesario un script para esto. Lo mismo entre pipes, greps y transformaciones así podia hacer un *oneline* que pudiera meter en un alias y listo. A veces, cuando busco como obtener cierta info o como hacer ciertas tareas en Linux, los resultados de sitios como *Super User* muestran a gente poniendo locuras de comandos para poder hacer todo tipo de virguerías, por lo que pensé que lo mismo podia hacer yo, o al menos intentarlo. Por ello, hoy vengo a explicar como montar un sistema para generar un log con los dispositivos bluetooth que se van detectando.
+Dándole una vuelta más, me planteé si realmente era necesario un script para esto. Lo mismo entre pipes, greps y transformaciones podía hacer un *oneline* que pudiera meter en un alias y listo. A veces, cuando busco como obtener cierta info o como hacer ciertas tareas en Linux, los resultados de sitios como *Super User* muestran a gente poniendo locuras de comandos para poder hacer todo tipo de virguerías, por lo que pensé que yo podía hacer lo mismo, o al menos intentarlo. Por ello, hoy vengo a explicar cómo montar un comando para monitorizar los dispositivos bluetooth que tengo alrededor.
 
 Lo primero es lo primero. La herramienta para trabajar con bluetooth que he usado es `bluetoothctl`.
 
@@ -27,7 +28,7 @@ Si se ejecuta, se ve que funciona en modo interactivo. Para escanear dispositivo
 
 ![Bluetooth oneliner](/static/images/bt-oneline/bt-oneline-2.png)
 
-Aquí viene el primer problema. Como quiero redirigir la salida de esto, el modo interactivo no me sirve. En Bash (y en otras shells como Zsh, la que uso yo), un `--` indica el fin de comandos, tras lo cual solo se puede pasar parametros. Por lo que, si se pone lo siguiente:
+Aquí viene el primer problema. Como quiero redirigir la salida de esto, el modo interactivo no me sirve. En Bash (y en otras shells como Zsh, la que uso yo), un `--` indica el fin de comandos, tras lo cual solo se puede pasar párametros. Por lo que, si se pone lo siguiente:
 
 ```bash
 bluetoothctl -- scan on
@@ -37,7 +38,7 @@ bluetoothctl -- scan on
 
 Ya devuelve todo por salida estándar y sin modo interactivo.
 
-El siguiente paso es realizar alguna transformación. De primeras, me interesa cortar algunos parámetros y volcar esto y filtrar algunas lineas en funcion de su contenido. Para esto ya se que lo mejor es usar el avanzado pero intimidante `awk`. He visto algunos [videos](https://www.youtube.com/watch?v=W5kr7X7EG4o) sobre él pero no lo he usado nunca más allá de copiapegas. Simplemente por probar, he probado a usar la opcion para imprimir lo que devuelve, de la siguiente manera.
+El siguiente paso es realizar alguna transformación. De primeras, me interesa cortar algunos parámetros, volcar esto y filtrar algunas líneas en función de su contenido. Para esto ya se que lo mejor es usar el avanzado pero intimidante `awk`. He visto algunos [videos](https://www.youtube.com/watch?v=W5kr7X7EG4o) sobre él pero no lo he usado nunca más allá de copiapegas. Simplemente por probar, he probado a usar la opción para imprimir lo que devuelve, de la siguiente manera.
 
 ```bash
 bluetoothctl -- scan on | awk '{print}'
@@ -53,9 +54,9 @@ stdbuf -oL bluetoothctl -- scan on | awk '{print}'
 
 ![Bluetooth oneliner](/static/images/bt-oneline/bt-oneline-5.png)
 
-(No voy a entrar en la expliación detallada de todos los comandos y argumentos, ya que nunca lo voy a poder hacer tan bien como `man`).
+(No voy a entrar en la explicación detallada de todos los comandos y argumentos, ya que nunca lo voy a poder hacer tan bien como `man` u otros internautas anónimos).
 
-Bien, ahora si que funciona, así que podemos empezar a ponernos serios. Para mostrar solo ciertas partes, se puede usar la sintáxis de dólar, que permite seleccionar ciertos parametros en cada línea de entrada.
+Bien, ahora sí que funciona, así que podemos ponernos serios. Para mostrar solo ciertas partes, se puede usar la sintáxis de dólar, que permite seleccionar ciertos párametros en cada línea de entrada.
 
 ```bash
 stdbuf -oL bluetoothctl -- scan on \ 
@@ -64,7 +65,7 @@ stdbuf -oL bluetoothctl -- scan on \
 
 ![Bluetooth oneliner](/static/images/bt-oneline/bt-oneline-6.png)
 
-Seleccionando el primero, el tercero y el cuarto, se muestran solamente esos campos. Por defecto, el separador es el espacio, pero si se quiere explicitar o usar cualquier otro, se puede indicar con `-F`.
+Seleccionando el primero, el tercero y el cuarto, se muestran sólamente esos campos. Por defecto, el separador es el espacio, pero si se quiere explicitar o usar cualquier otro, se puede indicar con `-F`.
 
 ```bash
 stdbuf -oL bluetoothctl -- scan on \
@@ -73,7 +74,7 @@ stdbuf -oL bluetoothctl -- scan on \
 
 ![Bluetooth oneliner](/static/images/bt-oneline/bt-oneline-7.png)
 
-Sabiendo como coger campos, ahora lo que me interesa es coger solo ciertas lineas. Se pueden establecer condiciones para ciertas lineas. Se que las lineas que me interesan son las que tienen "Device" en el segundo parámetro. Para poner esto en `awk`, se expresa antes del comando `print` de la siguiente manera:
+Sabiendo como coger campos, ahora lo que me interesa es coger solo ciertas líneas. Se pueden establecer condiciones para ciertas lineas. Se que las líneas que me interesan son las que tienen "Device" en el segundo parámetro. Para poner esto en `awk`, se expresa antes del comando `print` de la siguiente manera:
 
 ```bash
 stdbuf -oL bluetoothctl -- scan on \
@@ -82,7 +83,7 @@ stdbuf -oL bluetoothctl -- scan on \
 
 ![Bluetooth oneliner](/static/images/bt-oneline/bt-oneline-8.png)
 
-Incluso se pueden poner varias condiciones. En mi caso las lineas que me interesan son las que tengan un `[NEW]` o un `[DEL]`, que es lo que determina cuando se encuentra un dispositivo y cuando se deja de detectar. Esto junto a lo de "Device" limita perfectamente lo que intento monitorizar. Para poner esto, se pone con `&&` y limitando entre parentesis. Como lo que se usan son regex, se usa el single pipe (`|`) para decir que vale cualquiera de esos dos valores, quedando así:
+Incluso se pueden poner varias condiciones, cada una con su regex. En mi caso las líneas que me interesan son las que tengan un `[NEW]` o un `[DEL]`, que es lo que determina cuando se encuentra un dispositivo y cuando se deja de detectar. Esto, junto a lo de "Device", limita perfectamente lo que intento monitorizar. Para poner esto, se pone con `&&` y limitando las condiciones entre paréntesis. Como lo que se usan son regex, se usa el single pipe (`|`) para decir que vale cualquiera de esos dos valores, quedando así:
 
 ```bash
 stdbuf -oL bluetoothctl -- scan on \
@@ -100,7 +101,7 @@ stdbuf -oL bluetoothctl -- scan on \
 
 ![Bluetooth oneliner](/static/images/bt-oneline/bt-oneline-10.png)
 
-A estas alturas ya estoy flipando, poque la de lineas de script de Python que me he ahorrado con esto. Ya, lo ultimo que me falta es volcarlo a un archivo.
+A estas alturas ya estoy sorprendido de lo que se puede hacer con una única linea y juntando comandos (la de lineas de Python que me he ahorrado con esto). Ya, lo ultimo que me falta es volcarlo a un archivo.
 
 Algo que me interesaba era volcarlo a un archivo pero ir viendo al mismo tiempo la salida. Para esto `tee` viene perfecto. Pasamos la salida de `awk` a `tee` con un pipe y listo: 
 
@@ -111,7 +112,7 @@ stdbuf -oL bluetoothctl -- scan on \
 
 ![Bluetooth oneliner](/static/images/bt-oneline/bt-oneline-12.png)
 
-Mierda. No funciona. Pero espera, esto ya nos suena. Tenemos entre `awk` y `tee` el mismo problema que teniamos con `bluetoothctl` y `awk`, así que probamos a solucionarlo de la misma manera y listo:
+Mierda. No funciona. Pero espera, esto ya nos suena. Tenemos entre `awk` y `tee` el mismo problema que teníamos con `bluetoothctl` y `awk`, así que probamos a solucionarlo de la misma manera y listo:
 
 ```bash
 stdbuf -oL bluetoothctl -- scan on \
@@ -121,18 +122,18 @@ stdbuf -oL bluetoothctl -- scan on \
 
 ![Bluetooth oneliner](/static/images/bt-oneline/bt-oneline-13.png)
 
-Y listo. Ya tenemos todo el sistema montado. Una vez hecho, he visto que hay varios detalles que corregir, como que quizas coger justo esos parametros no es buena idea ya que el cuarto parametro puede cortarse con espacios, o que igual no me interesa filtrar tanta información.
+Y listo. Ya tenemos todo el sistema montado. Una vez hecho, he visto que hay varios detalles que corregir, como que quizás coger justo esos parametros no es buena idea ya que el cuarto parametro puede cortarse con espacios, o que igual no me interesa filtrar tanta información.
 
-Pero, de todas maneras, eso no es lo importante. Lo esencial es que, con unos comandos, un poco de prueba error y nuestros amigos Google y `man`, se puede montar muchas cosas, sin tener que hacer scripts ni nada. Esto tiene varias ventajas:
+De todas maneras, eso no es lo importante. Lo esencial es que, con unos comandos, un poco de prueba error y nuestros amigos Google y `man`, se puede montar muchas cosas, sin tener que hacer scripts ni nada. Esto tiene varias ventajas:
 
-- Usar herramientas estándar, que estan disponibles en la mayoría de distribuciones Linux, lo que asegura poder usarlo en cualquier lado.
+- Usar herramientas estándar, que están disponibles en la mayoría de distribuciones Linux, lo que asegura poder usarlo en cualquier lado.
 
-- Menos scripting. Que no me malinterpretéis, me encanta programar, pero para que hacerlo si ya hay comandos solidos y probados que permiten hacerlo. No hay que reinventar la rueda, *Keep It Simple, Stupid!*
+- Menos scripting. Que no me malinterpretéis, me encanta programar, pero para qué hacerlo si ya hay comandos sólidos y probados que permiten hacerlo. No hay que reinventar la rueda, *Keep It Simple, Stupid!*
 
-- Poder ponerlo como alias (o función *oneline* si las comillas dan muchos problemas) en nuestros `.bashrc` (o `.zshrc` en mi caso). Ejecutar esto escribiendo una sola palabra te hace sentir muy poderoso.
+- Poder ponerlo como alias (o función *oneline* si las comillas dan muchos problemas) en un `.bashrc` (o `.zshrc` en mi caso). Ejecutar esto escribiendo una sola palabra te hace sentir muy poderoso.
 
 Y esto es todo. Sé que, y me he dado cuenta mientras lo hacía, de que hay muchas maneras de mejorar esto. Algunas las he visto, de otras no me habré dado ni cuenta. Mi intención con esto es simplemente mostrar la belleza y la magia de usar herramientas estándar y la terminal, y lo potentes que son este tipo de herramientas para hacer muchas cosas que, al final, no necesitan ser programadas.
 
-Siempre que vayáis hacer alguna cosa del estilo, plantearos una cosa: alguien sería capaz de hacer esto con un comando? Si la respuesta es sí, buscadlo y, si no lo encontráis, abrid la terminal!
+Siempre que vayáis hacer alguna cosa del estilo, plantearos si alguien sería capaz de hacer esto con un comando. Si la respuesta a esa pregunta es sí, buscadlo y, si no lo encontráis, abrid la terminal.
 
 *Happy Hacking!*
