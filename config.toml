@@ -13,7 +13,7 @@ enableEmoji = true
 
 [author]
 	name = "Ander Granado"
-	email = "ander@protonmail.com"
+	email = "ander {at} protonmail {dot} com"
 
 [permalinks]
   posts = "blog/:title"
