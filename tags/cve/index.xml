@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>cve on Walk on the Byte Side</title><link>https://ander94lakx.github.io/tags/cve/</link><description>Recent content in cve on Walk on the Byte Side</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>ander@protonmail.com (Ander Granado)</managingEditor><webMaster>ander@protonmail.com (Ander Granado)</webMaster><lastBuildDate>Sat, 29 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://ander94lakx.github.io/tags/cve/index.xml" rel="self" type="application/rss+xml"/><item><title>Pwnkit: Vulnerability in Polkit (CVE-2021-4034) in 5 minutes</title><link>https://ander94lakx.github.io/blog/2022-01-29-polkit/</link><pubDate>Sat, 29 Jan 2022 00:00:00 +0000</pubDate><author>ander@protonmail.com (Ander Granado)</author><guid>https://ander94lakx.github.io/blog/2022-01-29-polkit/</guid><description>Another new CVE that has been making headlines. The CVE-2021-4034 was released a few days ago and has spread like wildfire. I can&amp;rsquo;t really contribute much more to the topic that hasn&amp;rsquo;t already been said, but it might be good to give a brief overview of the CVE and how to exploit it (which is trivial).
+What is polkit? Polkit is a tool for controlling privileges on Unix-like systems. It can control how unprivileged processes communicate with privileged processes.</description><content>&lt;p>Another new CVE that has been making headlines. The &lt;a href="https://nvd.nist.gov/vuln/detail/CVE-2021-4034">CVE-2021-4034&lt;/a> was released a few days ago and has spread like wildfire. I can&amp;rsquo;t really contribute much more to the topic that hasn&amp;rsquo;t already been said, but it might be good to give a brief overview of the CVE and how to exploit it (which is trivial).&lt;/p>
+&lt;h2 id="what-is-polkit">What is polkit?&lt;/h2>
+&lt;p>&lt;a href="https://wiki.archlinux.org/title/Polkit">Polkit&lt;/a> is a tool for controlling privileges on Unix-like systems. It can control how unprivileged processes communicate with privileged processes.&lt;/p>
+&lt;p>This is useful because there are many cases where a process needs to interact with privileged processes only for certain actions, but not for other ones. Instead of using something like sudo (which would be like &amp;ldquo;open all the doors and see what happens&amp;rdquo;), with Polkit you can control this kind of operations in more detail.&lt;/p>
+&lt;h2 id="what-is-the-vulnerability">What is the vulnerability?&lt;/h2>
+&lt;p>Polkit has a utility called &lt;a href="https://linux.die.net/man/1/pkexec">pkexec&lt;/a>. This utility allows to execute commands as another user or as root. This utility has a vulnerability, as it does not properly parse the number of parameters it receives and allows environment variables to be executed as commands (!).&lt;/p>
+&lt;p>Then, depending on what is passed as environment variables, arbitrary code can be executed. From there, you can escalate privileges and get admin permissions, i.e. root.&lt;/p>
+&lt;h2 id="how-can-the-vulnerability-be-exploited">How can the vulnerability be exploited?&lt;/h2>
+&lt;p>Obviously, there are already exploits for this. To see how easy it is, you can use [Davide Berardi]&amp;rsquo;s exploit (&lt;a href="https://github.com/berdav/CVE-2021-4034">https://github.com/berdav/CVE-2021-4034&lt;/a>) as an example. Testing it is as easy as clone, compile, run and win!&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>git clone https://github.com/berdav/CVE-2021-4034
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>make
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>./cve-2021-4034
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>And &lt;em>voilà&lt;/em>! there you have the root shell.&lt;/p>
+&lt;p>&lt;img src="https://ander94lakx.github.io/static/images/polkit-exploit.png" alt="Polkit exploit" title="Polkit exploit">&lt;/p>
+&lt;h2 id="which-systems-are-vulnerable">Which systems are vulnerable?&lt;/h2>
+&lt;p>Well, I would say practically all of them. The vulnerability has been &lt;a href="https://blog.qualys.com/vulnerabilities-threat-research/2022/01/25/pwnkit-local-privilege-escalation-vulnerability-discovered-in-polkits-pkexec-cve-2021-4034">successfully exploited&lt;/a> in default installations of Ubuntu, Debian, Fedora, CentOS and many more distributions. After all, it is a component found in practically all Unix-like distributions.&lt;/p>
+&lt;p>The worst thing is not only that, but that the vulnerability has been in the code for &lt;a href="https://gitlab.freedesktop.org/polkit/polkit/-/commit/c8c3d835d24fc4ce5a9c596c7d55d85a0311e8d1">more than 12 years&lt;/a> (!). For me, personally, this is the part that scares me about this kind of vulnerability, the ones that have been open to exploitation for a long time, because I don&amp;rsquo;t know to what extent they have been exploited previously.&lt;/p>
+&lt;h2 id="how-to-mitigate-the-vulnerability">How to mitigate the vulnerability?&lt;/h2>
+&lt;p>Everyone&amp;rsquo;s been doing their best to patch it, so at this point, updating via the package manager should be enough to mitigate it.&lt;/p>
+&lt;p>In the same exploit repo that I have shown there is a version just to test if you are vulnerable, which can be tested as follows:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>make dry-run
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dry-run/dry-run-cve-2021-4034
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Another option, in case of the system could not be updated (bad idea by the way, you should always keep your systems up to date), could be to disable the SUID bit of pkexec. A &lt;code>chmod&lt;/code> to remove the bit for everyone:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>chmod ug-s /bin/pkexec
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This prevents the exploit from escalating privileges, although it can have many unforeseen consequences (as in Half Life :)).&lt;/p>
+&lt;h2 id="conlusions">Conlusions&lt;/h2>
+&lt;p>To summarise, here are a few points that come to mind after seeing a vulnerability of this type:&lt;/p>
+&lt;ul>
+&lt;li>Be careful with your inputs, especially in languages like C and when dealing with lower level elements.&lt;/li>
+&lt;li>You can never be completely sure. There are always vulnerabilities that we don&amp;rsquo;t know about but can be discovered by others.&lt;/li>
+&lt;li>The more people are on the side of the good guys, the more such vulnerabilities can be discovered, and faster.
+&lt;ul>
+&lt;li>Imagine the consequences of this falling into the wrong hands (and I&amp;rsquo;m not just talking about cybercriminals ;)).&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>So you know, update your systems!&lt;/p>
+&lt;p>Happy hacking!&lt;/p>
+&lt;h2 id="i-want-more-details">I want more details!&lt;/h2>
+&lt;p>Well, here they are:&lt;/p>
+&lt;ul>
+&lt;li>The &lt;a href="https://www.qualys.com/2022/01/25/cve-2021-4034/pwnkit.txt">original report&lt;/a>.&lt;/li>
+&lt;li>Article in &lt;a href="https://blog.qualys.com/vulnerabilities-threat-research/2022/01/25/pwnkit-local-privilege-escalation-vulnerability-discovered-in-polkits-pkexec-cve-2021-4034">his blog&lt;/a>.&lt;/li>
+&lt;/ul>
+&lt;p>&lt;em>PS&lt;/em>: I would explain the vulnerability in detail, but I think it&amp;rsquo;s already very well explained in hundreds of articles and videos, and I&amp;rsquo;m not going to think I&amp;rsquo;m better than them. My goal here was simply to make a brief summary of a vulnerability that I found interesting.&lt;/p></content></item></channel></rss>

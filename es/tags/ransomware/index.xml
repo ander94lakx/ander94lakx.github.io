@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ransomware on Walk on the Byte Side</title><link>https://ander94lakx.github.io/es/tags/ransomware/</link><description>Recent content in ransomware on Walk on the Byte Side</description><generator>Hugo -- gohugo.io</generator><language>es</language><managingEditor>ander@protonmail.com (Ander Granado)</managingEditor><webMaster>ander@protonmail.com (Ander Granado)</webMaster><lastBuildDate>Sun, 11 Sep 2022 23:30:00 +0200</lastBuildDate><atom:link href="https://ander94lakx.github.io/es/tags/ransomware/index.xml" rel="self" type="application/rss+xml"/><item><title>Análisis de malware (II) - Análisis estático básico: strings y metadatos</title><link>https://ander94lakx.github.io/es/blog/2022-09-11-malware-analysis-2/</link><pubDate>Sun, 11 Sep 2022 23:30:00 +0200</pubDate><author>ander@protonmail.com (Ander Granado)</author><guid>https://ander94lakx.github.io/es/blog/2022-09-11-malware-analysis-2/</guid><description>Ha llegado el día. Es hora de retomar lo que comencé hace meses y continuar con la seria sobre análisis de malware. Esta es la segunda parte de una serie de artículos. En el articulo anterior hablaba sobre los conceptos básicos, los diferentes tipos de técnicas para analizar malware, como conseguir muestras y algunos programas básicos para realizar este tipo de análisis.
+Antes de nada, es necesario recordad los diferentes tipos de análisis que existen.</description><content>&lt;p>Ha llegado el día. Es hora de retomar lo que comencé hace meses y continuar con la seria sobre análisis de malware. Esta es la segunda parte de una serie de artículos. En el &lt;a href="../2022-01-26-malware-analysis-1">articulo anterior&lt;/a> hablaba sobre los conceptos básicos, los diferentes tipos de técnicas para analizar malware, como conseguir muestras y algunos programas básicos para realizar este tipo de análisis.&lt;/p>
+&lt;p>Antes de nada, es necesario recordad los diferentes tipos de análisis que existen. Básicamente se dividen en 4 tipos diferentes:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Análisis estático&lt;/strong>: consiste en analizar información sobre el malware sin analizar su código ni ejecutarlo: metadatos, firmas, formato y secciones del binario, etc.&lt;/li>
+&lt;li>&lt;strong>Análisis dinámico&lt;/strong>: consiste en observar el comportamiento del malware mientras se ejecuta: ficheros con los que interactúa, llamadas al sistema, trafico de red, cambios en el registro, etc.&lt;/li>
+&lt;li>&lt;em>Análisis de código&lt;/em>: consiste en observar el código y se distingue en dos tipos:
+&lt;ul>
+&lt;li>&lt;strong>Análisis estático de código&lt;/strong>: analizar el código sin ejecutarlo.&lt;/li>
+&lt;li>&lt;strong>Análisis dinámico de código&lt;/strong>: analizar el código mientras se ejecuta, es decir, depurarlo.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>No hay una norma estricta sobre el orden en el que aplicar las técnicas o por donde empezar. Aun así, hay ciertas cosas que tienen sentido hacerlas antes que otras. Analizar código, por ejemplo, no es lo más sencillo de realizar, por lo que no suele ser lo primero que se hace. El análisis dinámico necesita capturar mucha información, por lo que si es algo que vamos a hacer nosotros en local, tiene sentido intentar tener un conocimiento básico sobre la muestra que se analiza para poder &amp;ldquo;centrar el tiro&amp;rdquo;: decidir que elementos monitorizar y priorizar que información analizar primero.&lt;/p>
+&lt;p>El tipo de análisis más sencillo que se puede realizar es el &lt;strong>análisis estático&lt;/strong>. No requiere ni analizar el código ni tener que poner toda una serie de programas a monitorizar. Usando únicamente análisis estático se puede sacar mucha información sobre el tipo de archivo, metadatos con pistas interesantes, el tipo de malware que puede ser, etc.&lt;/p>
+&lt;p>Por ello, este tipo de técnicas suelen ser las primeras a realizar ya que son rápidas de realizar y permiten &lt;strong>clasificar el malware&lt;/strong>. ¿En que consiste clasificar malware? Analizar malware sirve para, por un lado, ver de que tipo de malware se trata y como encaja dentro de todo el malware que existe (a que &amp;ldquo;familia&amp;rdquo; de malware pertenece) y, por otro lado, para entender como se comporta y aprender de ello. La primera de ellas es lo que se llama clasificación.&lt;/p>
+&lt;p>Esto es porque, por lo general, las muestras de malware suelen ser variaciones de otras. En programación, cuanto más se pueda reciclar, mejor, y en el caso del malware no va a ser diferente. Buscando patrones, firmas y características que ya se han encontrado en otras muestras permite saber de qué tipo de malware se trata mucho antes de tener que ver cómo esta programado o cómo se comporta, ahorrando mucho tiempo. Además, si se sabe que tipo de malware es, analizar su código es más sencillo (ya se sabe las características y particularidades que se quieren buscar) y ya se pueden tener pistas sobre como se va a comportar basado en como se comportan malware similar.&lt;/p>
+&lt;h1 id="requisitos">Requisitos&lt;/h1>
+&lt;p>Con todo esto, vamos a ver como se puede obtener información básica de una muestra. Para esto, obviamente, se necesita una muestra de malware. Yo voy a usar una que ya analicé en su momento de un &lt;a href="https://bazaar.abuse.ch/sample/7faeb64c50cd15d036ca259a047d6c62ed491fff3729433fefba0b02c059d5ed/">ransomware Ryuk&lt;/a>. El hash SHA-256 de la muestra es el siguiente:&lt;/p>
+&lt;pre tabindex="0">&lt;code>7faeb64c50cd15d036ca259a047d6c62ed491fff3729433fefba0b02c059d5ed
+&lt;/code>&lt;/pre>&lt;p>Para esto vale cualquier muestra, solo que depende de cuál se use se va a obtener resultados diferentes. Obviamente, como las muestras cogidas de repositorios de malware como esta ya son conocidas, ya nos hemos comido el &lt;em>spoiler&lt;/em> sobre que tipo de muestra es. Analizando una muestra desconocida esto no pasaría. Aun asi, lo interesante es ver hasta que punto somos capaces nosotros mismos de sacar informacion de la muestra.&lt;/p>
+&lt;p>Por otro lado, es necesario tener un entorno seguro donde analizar la muestra. Para ello, es necesario usar un entorno virtualizado. El el artículo anterior mencionaba varias opciones. Aunque en este caso la muestra sea para Windows, esta parte se puede hacer tanto con máquinas Linux como con Windows ya que, por el momento, no vamos a ejecutar nada. Para la parte dinámica es necesario tener una máquina virtual Windows. En mi caso, para mostrar un poco de todo, voy a usar tanto una máquina virtual Windows como una Linux, concretamente Remnux. Me gusta ir combinando las dos ya que hay herramientas que solo se encuentran en uno de los sistemas. Además, me siento más comodo con la terminal de Linux, pero a veces prefiero algunos programas para Windows. Mientras se use la misma muestra en ambos no hay problema. Podemos comprobar que tenemos la misma muestra en ambas basta con verificar la integraidad de la muestra con su hash.&lt;/p>
+&lt;p>Ya con esto, podemos empezar a meterle mano a la muestra.&lt;/p>
+&lt;h1 id="cálculo-de-hashes">Cálculo de hashes&lt;/h1>
+&lt;p>Lo primero es calcular los hashes de la muestra. Si se obtiene de algún repo, ya se tiene el hash y simplemente es necesario comprobarlo para comprobar su integridad; o lo que es lo mismo, garantizar que tenemos la muestra que queríamos. Se puede realizar con alguna herramienta, como 7Zip o HashCalc para Windows o usar algún comando como los que ya vienen en algunos sistemas, como la mayoría de Linux.&lt;/p>
+&lt;p>&lt;img src="https://ander94lakx.github.io/static/images/malware-2-hashes-linux.png" alt="Hashes Linux" title="Cálculo de hashes en Linux">&lt;/p>
+&lt;p>Si usamos varias máquinas, conviene hacer esto en todas para asegurar que se tiene la misma muestra cargada en todas las máquinas.&lt;/p>
+&lt;p>&lt;img src="https://ander94lakx.github.io/static/images/malware-2-hashes-windows.png" alt="Hashes Windows" title="Cálculo de hashes en Windows">&lt;/p>
+&lt;p>Vale, ya tenemos la muestra en nuestro sistema y lista para analizar. ¿Por dónde se puede empezar?&lt;/p>
+&lt;p>En realidad, como comentaba, no hay un orden definido para esto, pero si que es cierto que hay algunos procesos básicos que podemos realizar muy rápidamente y que suelen ser los primeros que se realizan, tanto por lo fáciles que son como por la información que pueden aportar a la hora de realizar otro tipo de análisis más complejos, como los análisis de código o de comportamiento. En esta parte vamos a realizar un par de técnicas básicas de análisis estático: &lt;strong>analizar strings y metadatos&lt;/strong>.&lt;/p>
+&lt;h1 id="tipo-de-muestra">Tipo de muestra&lt;/h1>
+&lt;p>Aunque en este caso se sabe que es una muestra de malware para Windows, por regla general conviene, antes que nada, determinar qué tipo de muestra tenemos ante manos.Si la muestra fuese desconocida, esto nos permitiria saber si se trata de un binario o no y, para el primer caso, ver para que arquitectura y sistema operativo. Dependiendo de esto, sera necesario unas máquinas, herramientas y técnicas u otras. La forma mas sencilla es usar algo como el comando &lt;code>file&lt;/code> de Linux.&lt;/p>
+&lt;p>&lt;img src="https://ander94lakx.github.io/static/images/malware-2-file.png" alt="Tipo de archivo" title="Tipo de archivo">&lt;/p>
+&lt;p>Con esto comprobamos lo que ya sabiamos, que es un ejecutable para Windows de 32 bits. Vemos que menciona que es un ejecutable PE32. Más adelante indagaremos en el formato de los binarios PE32 y como analizar mas en detalle su estructura para obtener informacion de este tipo de muestras. De momento, ya que sabemos que es un binario, vamos a intentar extraer sus strings.&lt;/p>
+&lt;h1 id="análisis-de-strings">Análisis de strings&lt;/h1>
+&lt;p>Cualquiera que haya programado alguna vez ha tenido que leer código. De hecho, lo normal es pasarse más tiempo leyendo código que escribiéndolo. Cualquier programador con un mínimo de experiencia se ha tenido que sentar alguna vez delante de alguna &lt;em>codebase&lt;/em> para ver como funciona algún programa; porque le han pasado ese proyecto en el trabajo, porque ha &lt;em>forkeado&lt;/em> un proyecto y quiere ampliarlo o porque esta leyendo una respuesta de Stack Overflow. Sea por el motivo que sea, una de las formas más fáciles de entender lo que hace el código es fijarse en los mensajes que muestra o en los strings que contiene. Esos prints y logs que informan al usuario y al desarrollador también informan a otros programadores. Por ello, una de las cosas más básicas que se puede hacer al analizar malware es analizar strings.&lt;/p>
+&lt;p>Pero hay un problema. Normalmente, las muestras de malware que vamos a encontrar son muestras compiladas. No nos van a alegrar el día enseñándonos el código. asi que, ¿Cómo lo hacemos? ¿Ingeniería inversa?&lt;/p>
+&lt;p>Sí y no. Aunque haciendo reversing podemos obtener un código desensamblado o incluso un código a más alto nivel, todavía no es necesario. Un string no deja de ser un &amp;ldquo;churro&amp;rdquo; de bytes con una codificación concreta, como ASCII o UTF-8 por lo que con intentar pasar los bytes que tenemos a una codificación concreta para ver si conseguimos algo legible, podremos ser capaces de encontrar esos strings.&lt;/p>
+&lt;p>Obviamente, no hay que andar haciendo esto a mano. Hay muchas herramientas para hacer esto. Muchos editores hexadecimales tienen opciones para búsquedas de strings. En Windows, la manera más sencilla es usar &lt;strong>&lt;code>strings.exe&lt;/code>&lt;/strong>, una &lt;a href="https://docs.microsoft.com/en-us/sysinternals/">SysInternal&lt;/a> de Windows que extrae strings de un binario. Las SysInternal de Windows son herramientas muy potentes para tanto para administradores de sistemas Windows como para analistas de malware. Tenerlas en tu arsenal es un &lt;em>must&lt;/em>. El equivalente de esta herramienta en Linux es el comando &lt;strong>&lt;code>strings&lt;/code>&lt;/strong>.&lt;/p>
+&lt;p>Ejecutándola con el binario podemos ver los strings que detecta (he acortado la salida ya que da mucha basura y falsos positivos).&lt;/p>
+&lt;pre tabindex="0">&lt;code>!This program cannot be run in DOS mode.
+.text
+.rdata
+@.data
+.rsrc
+DllUnregisterServer
+catsrv.dll
+IsProcessorFeaturePresent
+GlobalUnlock
+GetUserDefaultUILanguage
+GetCurrentProcess
+QueryPerformanceCounter
+GetFileAttributesW
+LoadLibraryExW
+CloseHandle
+InitializeCriticalSectionAndSpinCount
+InitializeSListHead
+GetCurrentThreadId
+LoadLibraryA
+TerminateProcess
+CreateEventW
+GetModuleHandleW
+GetProcAddress
+SetUnhandledExceptionFilter
+VirtualProtectEx
+UnhandledExceptionFilter
+GlobalAlloc
+GlobalLock
+DeleteCriticalSection
+IsDebuggerPresent
+GetModuleFileNameW
+GetCurrentProcessId
+GetLastError
+OutputDebugStringW
+GetStartupInfoW
+kernel32.dll
+DllGetClassObject
+msident.dll
+CoUninitialize
+CoInitialize
+CoCreateGuid
+ole32.dll
+UuidCreate
+rpcrt4.dll
+CloseClipboard
+EnableWindow
+DrawIcon
+IsIconic
+EmptyClipboard
+OpenClipboard
+GetClientRect
+SendMessageW
+GetSystemMenu
+GetParent
+GetForegroundWindow
+SetClipboardData
+LoadIconW
+AppendMenuW
+GetSystemMetrics
+user32.dll
+&amp;lt;?xml version=&amp;#39;1.0&amp;#39; encoding=&amp;#39;UTF-8&amp;#39; standalone=&amp;#39;yes&amp;#39;?&amp;gt;
+&amp;lt;assembly xmlns = &amp;#39;urn:schemas-microsoft-com:asm.v1&amp;#39; manifestVersion = &amp;#39;1.0&amp;#39;&amp;gt;
+&amp;lt;trustInfo xmlns = &amp;#34;urn:schemas-microsoft-com:asm.v3&amp;#34;&amp;gt;
+&amp;lt;security&amp;gt;
+&amp;lt;requestedPrivileges&amp;gt;
+&amp;lt;requestedExecutionLevel level = &amp;#39;asInvoker&amp;#39; uiAccess = &amp;#39;false&amp;#39; /&amp;gt;
+&amp;lt;/requestedPrivileges&amp;gt;
+&amp;lt;/security&amp;gt;
+&amp;lt;/trustInfo&amp;gt;
+&amp;lt;/assembly&amp;gt;
+VeriSign, Inc.1+0)
+&amp;#34;VeriSign Time Stamping Services CA0
+070615000000Z
+120614235959Z0\1
+VeriSign, Inc.1402
++VeriSign Time Stamping Services Signer - G20
+http://ocsp.verisign.com0
+&amp;#34;http://crl.verisign.com/tss-ca.crl0
+TSA1-20
+Western Cape1
+Durbanville1
+Thawte1
+Thawte Certification1
+Thawte Timestamping CA0
+031204000000Z
+131203235959Z0S1
+VeriSign, Inc.1+0)
+&amp;#34;VeriSign Time Stamping Services CA0
+http://ocsp.verisign.com0
+0http://crl.verisign.com/ThawteTimestampingCA.crl0
+TSA2048-1-530
+VeriSign, Inc.1
+VeriSign Trust Network1;09
+2Terms of use at https://www.verisign.com/rpa (c)09100.
+&amp;#39;VeriSign Class 3 Code Signing 2009-2 CA0
+Moscow1
+Moscow1
+Kaspersky Lab1&amp;gt;0&amp;lt;
+5Digital ID Class 3 - Microsoft Software Validation v21
+Technical dept1
+Kaspersky Lab0
+3http://csc3-2009-2-crl.verisign.com/CSC3-2009-2.crl0D
+https://www.verisign.com/rpa0
+http://ocsp.verisign.com0?
+3http://csc3-2009-2-aia.verisign.com/CSC3-2009-2.cer0
+VeriSign, Inc.1705
+.Class 3 Public Primary Certification Authority0
+090521000000Z
+190520235959Z0
+VeriSign, Inc.1
+VeriSign Trust Network1;09
+2Terms of use at https://www.verisign.com/rpa (c)09100.
+&amp;#39;VeriSign Class 3 Code Signing 2009-2 CA0
+https://www.verisign.com/cps0*
+https://www.verisign.com/rpa0
+#http://logo.verisign.com/vslogo.gif0
+http://ocsp.verisign.com01
+http://crl.verisign.com/pca3.crl0)
+Class3CA2048-1-550
+xEv1
+Washington1
+Redmond1
+Microsoft Corporation1)0&amp;#39;
+Microsoft Code Verification Root0
+060523170129Z
+160523171129Z0_1
+VeriSign, Inc.1705
+.Class 3 Public Primary Certification Authority0
+Dhttp://crl.microsoft.com/pki/crl/products/MicrosoftCodeVerifRoot.crl0
+VeriSign, Inc.1
+VeriSign Trust Network1;09
+2Terms of use at https://www.verisign.com/rpa (c)09100.
+&amp;#39;VeriSign Class 3 Code Signing 2009-2 CA
+VeriSign, Inc.1+0)
+&amp;#34;VeriSign Time Stamping Services CA
+100907170408Z0#
+&lt;/code>&lt;/pre>&lt;p>Hay strings que van a aparecer prácticamente siempre, como los de las cabeceras DOS (ese &lt;code>&amp;quot;!This program cannot be run in DOS mode&amp;quot;&lt;/code> es un mecanismo de compatibilidad del formato PE que lleva arrastrando Microsoft desde hace décadas) o algunos que son simplemente falsos positivos. Aquí lo interesante es ver si alguno de esos strings da algún tipo de información sobre lo que hace el binario.&lt;/p>
+&lt;p>Entre todos los strings que se observan, se pueden ver dos tipos de strings:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Referencias a librerías y a funciones&lt;/strong>. En un binario, es normal encontrar referencias a funciones de librerías externas, ya que los programas suelen necesitar librerias externas (ya sean del sistema o no) para poder realizar ciertas cosas. Estas funciones pueden dar pistas sobre las capacidades que tiene el binario, es decir, que cosas puede hacer; por ejemplo, si contiene funciones para interactuar con ficheros, es que puede interactuar con ficheros. Aun así, esto no muestra todas las capacidades que puede tener un binario, ya que hay mecanismos para ocultar esto, los cuales veremos más adelante.&lt;/li>
+&lt;li>&lt;strong>Información sobre algún tipo de certificado&lt;/strong> (menciones a VeriSign, menciones a Microsoft, etc.). Esto puede indicar que el binario se encuentra firmado. Firmar un binario es una forma de eludir sistemas antivirus. Podemos verificar si esta firmado con diferentes herramientas.&lt;/li>
+&lt;/ul>
+&lt;p>Como se puede ver en este caso, por desgracia, los strings no parecen dar demasiada información sobre qué hace la muestra. No se han detectado strings propios del programa, como mensajes de salida, variables del programa, etc. En estos casos hay dos opciones: o la muestra no contiene strings interesantes o están ofuscadas. Sea cual sea, conviene siempre probar varios métodos para la extraction de string. Usar la SysInternal es el más sencillo de todos. Si usamos varias aplicaciones, como por ejemplo PEStudio, y comparamos resultados entre ellas, puede que saquemos mas resultados.&lt;/p>
+&lt;p>Pero, si están ofuscadas ¿cómo se pueden detectar? Hay herramientas pensadas para la detección de este tipo de strings. Si se ha usado algún tipo de mecanismo común, como usar un empaquetador de código (como UPX) o técnicas de ofuscación sencillas (como usar XOR sobre los datos en binario) este tipo de herramientas los pueden detectar. Se pueden utilizar herramientas como &lt;strong>FLOSS&lt;/strong> para intentar buscar este tipo de datos.&lt;/p>
+&lt;p>&lt;img src="https://ander94lakx.github.io/static/images/malware-2-strings-floss.png" alt="FLOSS strings" title="FLOSS para el análisis de strings">&lt;/p>
+&lt;p>Por no llenar el articulo de strings, no he puesto la salida de FLOSS, pero la herramienta no detecta más strings de las detectadas por &lt;code>strings&lt;/code>. Por el momento, se ve que con esta muestra no hemos tenido mucha suerte. El hecho de no encontrar strings tan fácilmente puede ser un indicador de uso de técnicas de ofuscación. Ofuscar tanto los datos como el código es normal en el mundo del malware (y no solo en el mundo del malware, este tipo de técnicas también se emplean para proteger propiedad intelectual, por ejemplo). De todas maneras, en las próximas partes nos meteremos en detalle más formas para detectar ofuscaciones, como el análisis del la secciones del binario y el análisis de entropía.&lt;/p>
+&lt;h1 id="metadatos">Metadatos&lt;/h1>
+&lt;p>Como esto esta quedando muy largo, en esta parte solo voy a tratar otro punto básico más: el análisis de metadatos. Las muestras de malware, al igual que cualquier archivo, pueden contener metadatos interesantes. Digo &amp;ldquo;pueden&amp;rdquo; porque puede darse el caso de que hayan sido eliminados, sobrescritos por otro sistema o incluso deliberadamente modificados para dificultar el análisis. Aun así, siempre conviene analizarlos para ver si se encuentra información.&lt;/p>
+&lt;p>Hay mil aplicaciones para analizar metadatos. La forma más sencilla (y que todos hemos usado alguna vez) es la típica de clicar en el archivo y ver sus propiedades. También hay aplicaciones que permiten hacer esto y muestran la información de manera más detallada y organizada. A mi personalmente me gusta usar &lt;strong>PEStudio&lt;/strong> (que entre otras muchas cosas, también muestra los metadatos) y &lt;strong>ExifTool&lt;/strong>, que es muy conocida ya no solo para analizar binarios como para analizar cualquier archivo (como su nombre indica, es muy común para sacar metadatos de fotografías).&lt;/p>
+&lt;p>&lt;img src="https://ander94lakx.github.io/static/images/malware-2-metadata-remnux.png" alt="Metadatos ExifTool" title="Metadatos con ExifTool">&lt;/p>
+&lt;p>&lt;img src="https://ander94lakx.github.io/static/images/malware-2-metadata-pestudio.png" alt="Metadatos PEStudio" title="Metadatos con PEStudio">&lt;/p>
+&lt;p>En los metadatos no vemos nada muy relevante, peo sí que se muestra información sobre un certificado de Microsoft, ya que el binario parece estar firmado. Podemos comprobar esto de varias maneras como, por ejemplo, en las propiedades del archivo o mediante funciones como &lt;code>Get-AuthenticodeSignature&lt;/code>.&lt;/p>
+&lt;p>&lt;img src="https://ander94lakx.github.io/static/images/malware-2-certificate-properties.png" alt="Certificado Propiedades" title="Comprobación del certificado en las propiedades del archivo">&lt;/p>
+&lt;p>Si se hace a traves de las propiedades del archivo, en caso de que este tuviera un certificado válido, las propiedades mostrarían una nueva pestaña con información sobre el certificado. En este caso, no parece haber certificado.&lt;/p>
+&lt;p>&lt;img src="https://ander94lakx.github.io/static/images/malware-2-certificate-powershell.png" alt="Certificado PowerShell" title="Comprobación del certificado mediante PowerShell">&lt;/p>
+&lt;p>Comprobando con PowerShell se obtiene le mismo resultado. Esto no tiene porque indicar que no tiene firma, también puede deberse a que la firma se encuentre caducada o que el certificado usado no sea valido. Aunque se haya firmado con un supuesto certificado de Microsoft, si estos certificados se ven comprometidos (cosa que ya ha pasado en alguna ocasión) se revocan, de tal manera que los sistemas no los den por válidos. En este caso, por la información de los metadados, parece tratarse de eso.&lt;/p>
+&lt;h1 id="conclusión">Conclusión&lt;/h1>
+&lt;p>Comenzar a analizar malware es una tarea relativamente sencilla (tranquilos, que se va a complicar). Aunque de momento no hemos obtenido mucha información, el hecho de no encontrar pistas en los strings o el encontrar un certificado sospechoso ya da pistas indicando que el archivo es malicioso (en este caso ya lo sabíamos, pero al analizar muestras desconocidas son pistas interesantes).&lt;/p>
+&lt;p>De todas maneras, el análisis estático que se puede realizar no acaba más que comenzar. En la siguiente parte tengo intención de indagar más en este tipo de técnicas, analizando técnicamente el binario y sus secciones y entrando más en detalle sobre como detectar técnicas de ofuscación, hablando de conceptos como de entropía.&lt;/p>
+&lt;p>Pero por el momento, &lt;em>stay safe &amp;amp; happy hacking&lt;/em>!&lt;/p>
+&lt;h1 id="más-artículos">Más artículos&lt;/h1>
+&lt;ul>
+&lt;li>&lt;a href="../2022-01-26-malware-analysis-1">Análisis de malware (I) - Cómo empezar a analizar malware&lt;/a>&lt;/li>
+&lt;li>Análisis de malware (II) - Análisis estático básico: strings y metadatos&lt;/li>
+&lt;li>&lt;a href="../2022-09-18-malware-analysis-3">Análisis de malware (III) - Análisis estático: formato de un binario PE32, entropía e indicadores de técnicas de ofuscación&lt;/a>&lt;/li>
+&lt;li>&amp;hellip;&lt;/li>
+&lt;/ul></content></item><item><title>Análisis de malware (I) - Cómo empezar a analizar malware</title><link>https://ander94lakx.github.io/es/blog/2022-01-26-malware-analysis-1/</link><pubDate>Wed, 26 Jan 2022 00:00:00 +0000</pubDate><author>ander@protonmail.com (Ander Granado)</author><guid>https://ander94lakx.github.io/es/blog/2022-01-26-malware-analysis-1/</guid><description>Estamos rodeados por malware. Todo el mundo ha tenido alguna vez un problema con algún tipo de virus o al menos conoce a alguien que lo haya tenido, al igual que conoce o trabaja en alguna empresa a la que le hayan atacado.
+Personalmente, el malware me parece fascinante. Lo que me fascina es la eficacia que estos tienen. Son cuidadosamente diseñados para cumplir con su labor y hay ejemplos tan sofisticados que es alucinante ver cómo a alguien se le ha podido ocurrir programar algo de esa manera para explotar una vulnerabilidad o utilizar ciertos tipos de mecanismos de evasión.</description><content>&lt;p>Estamos rodeados por malware. Todo el mundo ha tenido alguna vez un problema con algún tipo de virus o al menos conoce a alguien que lo haya tenido, al igual que conoce o trabaja en alguna empresa a la que le hayan atacado.&lt;/p>
+&lt;p>Personalmente, el malware me parece fascinante. Lo que me fascina es la eficacia que estos tienen. Son cuidadosamente diseñados para cumplir con su labor y hay ejemplos tan sofisticados que es alucinante ver cómo a alguien se le ha podido ocurrir programar algo de esa manera para explotar una vulnerabilidad o utilizar ciertos tipos de mecanismos de evasión.&lt;/p>
+&lt;p>Cada vez que veo una noticia de un nuevo ransomware, troyano o malware de algún tipo, siento curiosidad por saber como funciona. Suelo ojear los informes técnicos que salen de los ataques más sonados en búsqueda de más información y me quedo alucinado por los informes de los analistas. En parte, por las características de los casos que analizan y las formas en las que funcionan los malware, pero, por otra parte, por como son capaces de obtener toda esa información.&lt;/p>
+&lt;p>&lt;img src="https://ander94lakx.github.io/static/images/wannacry.png" alt="Wannacry" title="Wannacry en acción">&lt;/p>
+&lt;p>Este tipo de informes son realizados por analistas de malware. A veces están dentro de los equipos de DFIR de una empresa, otras son organizaciones gubernamentales o militares y otras veces es un hacker cualquiera posteando en su blog sobre una muestra con la que está jugando. Lo que está claro es que cogen una muestra de un malware y la analizan. Es un campo fascinante que me llama mucho la atención porque mezcla disciplinas que me parecen muy interesantes. Mezcla informática forense con ingeniería inversa y conocimientos a bajo nivel de los sistemas. Es como el plato combinado perfecto.&lt;/p>
+&lt;p>Últimamente he estado aprendiendo sobre esta area. Incluso hace no mucho realicé &lt;a href="https://github.com/ander94lakx/TFM_Doc">mi TFM&lt;/a> sobre ello. Para poder recolectar las cosas interesantes que he ido aprendiendo, he decidido escribir una serie de posts (y con ello retomar un poco este blog) sobre el proceso y algunas de las técnicas que se usan. Nno soy un experto en el tema, pero espero poder ayudar a quien lo lea y, por que no, a mi mismo al organizarme las ideas.&lt;/p>
+&lt;h2 id="qué-es-el-análisis-de-malware">¿Qué es el análisis de malware?&lt;/h2>
+&lt;p>El análisis de malware consiste en todas estas técnicas y procesos que permiten obtener información sobre cómo funciona un malware. El funcionamiento de cualquier programa, y por ello también el de un malware, depende de su código. Si se tuviera el código de un malware simplemente bastaría con examinarlo para conocer cómo funciona. En este caso no va a haber esa suerte. Lo mejor que podremos tener es algún tipo de código ofuscado o compilado, normalmente un binario.&lt;/p>
+&lt;p>Hay muchos tipos de malware. Un malware puede ser ese pedacito de JavaScript que se te ha colado en esa web con el objetivo de minar crypto para alguien y, a cambio de ello, convertir tu ordenador en un radiador. Un malware también puede ser ese .exe que te han colado como activador para tu Office pirata. Según el tipo de malware, se analizará de una manera u otra.&lt;/p>
+&lt;p>Yo en este caso me voy a centrar en malware para Windows y para arquitecturas x86 y x86_64. Si se piensa en ejemplos de malware, probablemente lo que más venga a la cabeza sean ejemplos para este tipo de sistemas y son los más comunes de encontrar.&lt;/p>
+&lt;p>En esencia, analizar malware consiste en comprender el funcionamiento de un programa, pero sin tener acceso directamente al código fuente. Es como tener una caja negra e intentar entender como funciona: puedes abrirle las tripas para intentar sacar el código, puedes lanzarla y ver como interactúa dentro de un sistema o puedes coger y analizar la forma de la caja para obtener pistas sobre ella.&lt;/p>
+&lt;h2 id="qué-se-hace-para-analizar-un-malware">¿Qué se hace para analizar un malware?&lt;/h2>
+&lt;p>Hay diferentes procesos y técnicas para analizar malware. Hay incluso procesos y metodologías que se pueden seguir y que estandarizan la forma de hacerlo. Aun con ello, analizar malware consiste, en esencia, en sacar información sobre él: cómo funciona, qué mecanismos tiene para evadirse, cómo y con quién ese comunica, qué mecanismos usa para persistir o propagarse, etc.&lt;/p>
+&lt;p>Las técnicas que se utilizan para sacar esa información son diversas, pero todas ellas se pueden dividir, a grandes rasgos, en las siguientes:&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>Análisis estático&lt;/strong>: consiste en analizar información sobre el malware sin analizar su código ni ejecutarlo: metadatos, firmas, formato y secciones del binario, etc.&lt;/p>
+&lt;p>&lt;img src="https://ander94lakx.github.io/static/images/pe-bear.png" alt="PE-bear" title="Análisis estático con PE-bear">&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Análisis dinámico&lt;/strong>: también llamado análisis de comportamiento, consiste en analizar la muestra mientras se ejecuta: ficheros con los que interactúa, llamadas al sistema, trafico de red, cambios en el registro, etc.&lt;/p>
+&lt;p>&lt;img src="https://ander94lakx.github.io/static/images/wireshark.png" alt="Wireshark" title="Captura de tráfico de red con Wireshark">&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;em>Análisis de código&lt;/em>: como su nombre indica, consiste en observar el código y se distingue en dos tipos:&lt;/p>
+&lt;p>&lt;img src="https://ander94lakx.github.io/static/images/ghidra.png" alt="Ghidra" title="Ghidra para análisis de código">&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Análisis estático de código&lt;/strong>: analizar el código sin ejecutarlo.&lt;/li>
+&lt;li>&lt;strong>Análisis dinámico de código&lt;/strong>: analizar el código mientras se ejecuta, es decir, depurarlo.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>Como se puede ver, todo lo estático esta relacionado con analizar sin ejecutar, mientras que la parte dinámica tiene que tener el malware en ejecución. También se puede distinguir entre técnicas en función de si se analiza el código o no. Al analizar una muestra, lo normal es que se realicen algunos tipos de tareas antes que otras. Las técnicas de análisis estático suelen ser fáciles de realizar y suelen hacerse al principio. Por el contrario, analizar el código es una tarea tediosa y suele hacerse más adelante, Aunque todo ello depende del proceso y del analista.&lt;/p>
+&lt;h2 id="como-empiezo">¿Como empiezo?&lt;/h2>
+&lt;p>Aquí no hay discusión, para analizar malware necesitas un entorno aislado. Coger malware y meterlo en tu ordenador para comenzar a trastear con él es mala idea. Si nadie quiere que se le cuele malware en su equipo sin querer, como para hacerlo a propósito.&lt;/p>
+&lt;p>La mejor forma para tener un entorno aislado es hacer uso de una máquina virtual. Se puede usar lo que se quiera (VirtualBox, VMWare, &amp;hellip;). En mi caso soy más de usar VirtualBox, pero cualquiera es perfectamente válido. Una vez se tenga el software de virtualización, hace falta crear obtener una ISO con Windows, crear la maquina virtual, cargar la imagen en&amp;hellip; ¿O quizás no?.&lt;/p>
+&lt;p>Es cierto que uno mismo puede buscar la ISO, crear la máquina e instalar Windows en ella, pero hay una forma más sencilla de obtener una VM con Windows, y es descargarla directamente de internet. La mejor opción son las VM que ofrece Microsoft para desarrolladores. Hay varias opciones. Se puede optar por una maquina que tiene un &lt;a href="https://developer.microsoft.com/en-us/windows/downloads/virtual-machines/">entorno de desarrollo completo&lt;/a> (es más grande, pero si se quiere ademas usarla para desarrollar malware puede estar bien), o las máquinas virtuales que tienen &lt;a href="https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/">para testear aplicaciones&lt;/a> en Edge, más ligeras y, en mi opinión, la mejor opción. De estas últimas, ademas de Windows 10, también hay versiones para Windows 7 y Windows 8, que para malwares viejos puede ser interesante. Hay versiones para los software más famosos, como VirtualBox o VMWare, así que con seleccionar la version deseada, bajarse el archivo y cargarlo en el software de virtualización necesario es más que suficiente.&lt;/p>
+&lt;h3 id="qué-herramientas-necesito">¿Qué herramientas necesito?&lt;/h3>
+&lt;p>Con una máquina virtual ya lista solo hace falta prepararla con las herramientas necesarias para analizar malware. Hay una gran cantidad de herramientas para analizar malware. Algunas como IDA o Ghidra sonarán a muchos. Al principio es normal no tener ni idea de cuales instalar. Lo mejor para estos casos es hacer uso de &lt;a href="https://github.com/mandiant/flare-vm">FLARE-VM&lt;/a>, una herramienta para instalar y mantener actualizados todo un conjunto de herramientas para analizar malware.&lt;/p>
+&lt;p>&lt;img src="https://ander94lakx.github.io/static/images/flare-install.png" alt="Flare install" title="Proceso de instalación de FLARE-VM">&lt;/p>
+&lt;p>Con usar esta herramienta sobre nuestra máquina y dejarle un rato para que instale todo, tendremos una maquina con todas las herramientas que se necesitan. Es la mejor opción, sobre todo, para probar todo tipo de herramientas y ya, en un futuro, poder crearte tu propio laboratorio solo con las herramientas que te gusten. La única desventaja que tiene usar algo como FLARE-VM es que nos va a engordar nuestra VM considerablemente (unos 60GB de VM ya te deja). A parte de eso, es tan sencillo como seguir los &lt;a href="https://github.com/mandiant/flare-vm#windows-10-installation">pasos de instalación&lt;/a> indicados en su repositorio.&lt;/p>
+&lt;p>También existen otro tipo de herramientas o directamente distribuciones que vienen ya con todo listo para usar. Una de mis favoritas es &lt;a href="https://remnux.org/">Remnux&lt;/a>, una distribución linux que viene prácticamente con todo. Tiene herramientas hasta para analizar malware para Windows. El único problema que tiene para analizar malware para Windows es que no vamos a poder ejecutarlo sobre esa máquina. Aun asi, es muy recomendable también.&lt;/p>
+&lt;p>&lt;img src="https://ander94lakx.github.io/static/images/remnux.png" alt="Remnux" title="Distribucion Remnux">&lt;/p>
+&lt;p>Si, aun así quieres instalar las herramientas a mano, te dejo algunas de las herramientas que me gustan a mí. Hay muchas mas, y esto depende de gustos y necesidades, pero a mí, algunas de las que me gustan son:&lt;/p>
+&lt;ul>
+&lt;li>Para análisis estático:
+&lt;ul>
+&lt;li>&lt;a href="https://www.winitor.com/">PEstudio&lt;/a> y &lt;a href="https://github.com/horsicq/Detect-It-Easy">DIE&lt;/a> para analizar binarios.&lt;/li>
+&lt;li>&lt;a href="https://ssdeep-project.github.io/ssdeep/index.html">ssdeep&lt;/a> y &lt;a href="https://virustotal.github.io/yara/">YARA&lt;/a> (y las &lt;a href="https://github.com/Yara-Rules/rules">Yara-Rules&lt;/a>) para clasificar y buscar malware similar.&lt;/li>
+&lt;li>&lt;a href="https://github.com/mandiant/capa">capa&lt;/a> para obtener de un vistazo pistas sobre las capacidades de una muestra.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Para análisis de código:
+&lt;ul>
+&lt;li>&lt;a href="https://hex-rays.com/ida-free/">IDA&lt;/a> para reversing y analizar código.&lt;/li>
+&lt;li>&lt;a href="https://ghidra-sre.org/">Ghidra&lt;/a> para cuando no puedas decompilar las muestras en IDA porque no te sobran miles de euros.&lt;/li>
+&lt;li>&lt;a href="https://x64dbg.com/">x64dbg&lt;/a> para &lt;del>crackear videojuegos&lt;/del> depurar muestras.
+&lt;ul>
+&lt;li>Mejora mucho con &lt;a href="https://github.com/x64dbg/ScyllaHide">ScyllaHide&lt;/a> y &lt;a href="https://github.com/ThunderCls/xAnalyzer">xAnalizer&lt;/a>, dos plugins indispensables.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Para análisis de comportamiento:
+&lt;ul>
+&lt;li>&lt;a href="https://processhacker.sourceforge.io/">Process Hacker&lt;/a> y las &lt;a href="https://docs.microsoft.com/en-us/sysinternals/">SysInternals&lt;/a> de Windows, en especial &lt;a href="https://docs.microsoft.com/en-us/sysinternals/downloads/procmon">Process Monitor&lt;/a> para poder monitorizar y analizar procesos y eventos del sistema.
+&lt;ul>
+&lt;li>Los PML de Process Monitor son tu mayor aliado.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;a href="https://sourceforge.net/projects/regshot/">Regshot&lt;/a> para capturar y comparar cambios en el registro.&lt;/li>
+&lt;li>&lt;a href="https://www.wireshark.org/">Wireshark&lt;/a> para capturar y analizar tráfico de red.&lt;/li>
+&lt;li>&lt;a href="https://belkasoft.com/es/bat">Belkasoft Acquisition Tool&lt;/a> para volcados de memoria&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Otros:
+&lt;ul>
+&lt;li>&lt;a href="https://mh-nexus.de/en/hxd/">HxD&lt;/a> como editor hexadecimal.&lt;/li>
+&lt;li>Una taza con café al lado.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="y-ahora-qué">¿Y ahora qué?&lt;/h2>
+&lt;p>Con todo listo y preparado, solo queda buscar una muestra para empezar a jugar. Para no abrumarse demasiado, lo mejor es optar por muestras de malware que ya hayan sido analizadas y no sean demasiado complejas. En repositorios como &lt;a href="https://github.com/ytisf/theZoo">TheZoo&lt;/a> hay muestras de malwares famosos. También se puede buscar alguno concreto en plataformas como &lt;a href="https://bazaar.abuse.ch/">MalwareBazaar&lt;/a>.&lt;/p>
+&lt;p>Otra opción consiste en probar este tipo de herramientas y técnicas con crackmes. Un crackme es el equivalente a una máquina de Hack The Box o TryHackMe pero para reversing. No son específicos para analizar malware, pero las técnicas que se usan con, en esencia, las mismas. Webs como &lt;a href="https://crackmes.one/">crackmes.one&lt;/a> tienen muchos crackmes de diferentes dificultades con los que practicar.&lt;/p>
+&lt;p>En los próximos posts explicare algunas de estas técnicas sobre una muestra de malware real para poder ver como se aplican las diferentes técnicas y como se usan las herramientas.&lt;/p>
+&lt;p>Happy hacking!&lt;/p>
+&lt;h1 id="más-artículos">Más artículos&lt;/h1>
+&lt;ul>
+&lt;li>Análisis de malware (I) - Cómo empezar a analizar malware&lt;/li>
+&lt;li>&lt;a href="../2022-09-11-malware-analysis-2">Análisis de malware (II) - Análisis estático básico: strings y metadatos&lt;/a>&lt;/li>
+&lt;li>&lt;a href="../2022-09-18-malware-analysis-3">Análisis de malware (III) - Análisis estático: formato de un binario PE32, entropía e indicadores de técnicas de ofuscación&lt;/a>&lt;/li>
+&lt;li>&amp;hellip;&lt;/li>
+&lt;/ul></content></item></channel></rss>
