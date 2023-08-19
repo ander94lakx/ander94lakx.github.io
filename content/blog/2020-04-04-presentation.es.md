@@ -26,7 +26,7 @@ Por lo que a mi respecta, muchas gracias por leerme y si te interesa, tengo una 
 
 Ondo ibili!
 
-P.D.: El blog esta hecho con ~~Jekyll~~ Gatsby, que me parece una herramienta cojonuda para hacer un blog como este y poder hostearlo con GitHub Pages.
+P.D.: El blog esta hecho con ~~Jekyll~~ ~~Gatsby~~ Hugo, que me parece una herramienta cojonuda para hacer un blog como este y poder hostearlo con GitHub Pages.
 
 P.D.2: El nombre del blog es simplemente una fusión bastante cutre del nombre de una canción de Lou Reed con la palabra byte.
 
