@@ -1,11 +1,11 @@
 baseURL = 'https://ander94lakx.github.io'
 languageCode = 'es-es'
-title = 'My New Hugo Site'
+title = 'Walk on the Byte Side'
 theme = "terminal"
 
 defaultContentLanguage = 'en'
 
-copyright = "Copyleft 🄯 2022, Ander Granado"
+copyright = "Copyleft 🄯 2025, Ander Granado"
 
 googleAnalytics = "G-EPK628CMMZ"
 
@@ -24,7 +24,7 @@ enableEmoji = true
   contentTypeName = "blog"
 
   # ["orange", "blue", "red", "green", "pink"]
-  themeColor = "green"
+  # themeColor = "green"
 
   # if you set this to 0, only submenu trigger will be visible
   showMenuItems = 5
@@ -79,17 +79,18 @@ enableEmoji = true
   [languages.es]
     languageName = "Español"
     title = "Walk on the Byte Side"
-    subtitle = ""
-    owner = "Ander Granado"
-    keywords = ""
-    copyright = ""
-    menuMore = "Mostrar más"
-    readMore = "Leer más"
-    readOtherPosts = "Leer otros posts"
-    newerPosts = "Más nuevos"
-    olderPosts = "Más antiguos"
-    missingContentMessage = "Page not found..."
-    missingBackButtonLabel = "Volver a la página de inicio"
+    [language.es.params]
+      subtitle = ""
+      owner = "Ander Granado"
+      keywords = ""
+      copyright = ""
+      menuMore = "Mostrar más"
+      readMore = "Leer más"
+      readOtherPosts = "Leer otros posts"
+      newerPosts = "Más nuevos"
+      olderPosts = "Más antiguos"
+      missingContentMessage = "Page not found..."
+      missingBackButtonLabel = "Volver a la página de inicio"
 
     [languages.es.params.logo]
       logoText = "Walk on the Byte side"
@@ -124,17 +125,19 @@ enableEmoji = true
   [languages.en]
     languageName = "English"
     title = "Walk on the Byte Side"
-    subtitle = ""
-    owner = "Ander Granado"
-    keywords = ""
-    copyright = ""
-    menuMore = "Show more"
-    readMore = "Read more"
-    readOtherPosts = "Read other posts"
-    newerPosts = "Newer posts"
-    olderPosts = "Older posts"
-    missingContentMessage = "Page not found..."
-    missingBackButtonLabel = "Back to home page"
+
+    [languages.en.params]
+      subtitle = ""
+      owner = "Ander Granado"
+      keywords = ""
+      copyright = ""
+      menuMore = "Show more"
+      readMore = "Read more"
+      readOtherPosts = "Read other posts"
+      newerPosts = "Newer posts"
+      olderPosts = "Older posts"
+      missingContentMessage = "Page not found..."
+      missingBackButtonLabel = "Back to home page"
 
     [languages.en.params.logo]
       logoText = "Walk on the Byte Side"
